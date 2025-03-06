@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="简单的Java语法-后续运算符简单地讲，就是Java语言（JDK）能识别的运算符号（**不只是针对“数”**而言） 基本的五个数字运算符：+ - * &#x2F; % 分别对应加、减、乘、除、取余结合前面的数据类型讲点特别的： 123456789101112131415161718192021222324252627282930public class Demo &#123;    public stati">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单的Java语法">
+<meta property="og:url" content="http://example.com/2025/03/06/%E7%AE%80%E5%8D%95%E7%9A%84Java%E8%AF%AD%E6%B3%95-%E8%A1%A5%E4%B8%81%E7%89%88/index.html">
+<meta property="og:site_name" content="KItide">
+<meta property="og:description" content="简单的Java语法-后续运算符简单地讲，就是Java语言（JDK）能识别的运算符号（**不只是针对“数”**而言） 基本的五个数字运算符：+ - * &#x2F; % 分别对应加、减、乘、除、取余结合前面的数据类型讲点特别的： 123456789101112131415161718192021222324252627282930public class Demo &#123;    public stati">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-03-06T11:49:52.317Z">
+<meta property="article:modified_time" content="2025-03-06T12:55:58.080Z">
+<meta property="article:author" content="KItide">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/03/06/%E7%AE%80%E5%8D%95%E7%9A%84Java%E8%AF%AD%E6%B3%95-%E8%A1%A5%E4%B8%81%E7%89%88/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/03/06/%E7%AE%80%E5%8D%95%E7%9A%84Java%E8%AF%AD%E6%B3%95-%E8%A1%A5%E4%B8%81%E7%89%88/","path":"2025/03/06/简单的Java语法-补丁版/","title":"简单的Java语法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>简单的Java语法 | KItide</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">KItide</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E7%9A%84Java%E8%AF%AD%E6%B3%95-%E5%90%8E%E7%BB%AD"><span class="nav-number">1.</span> <span class="nav-text">简单的Java语法-后续</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">1.1.</span> <span class="nav-text">运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%9A%84%E4%BA%94%E4%B8%AA%E6%95%B0%E5%AD%97%E8%BF%90%E7%AE%97%E7%AC%A6%EF%BC%9A-%E5%88%86%E5%88%AB%E5%AF%B9%E5%BA%94%E5%8A%A0%E3%80%81%E5%87%8F%E3%80%81%E4%B9%98%E3%80%81%E9%99%A4%E3%80%81%E5%8F%96%E4%BD%99"><span class="nav-number">1.1.0.0.0.1.</span> <span class="nav-text">基本的五个数字运算符：+ - * &#x2F; % 分别对应加、减、乘、除、取余</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.2.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%8F%90%E5%8F%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E2%80%94%E2%80%94%E5%AD%90%E4%B8%B2"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">从字符串中提取字符串——子串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B9%8B%E9%97%B4%E7%9A%84%E6%8B%BC%E6%8E%A5"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">字符串之间的拼接</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%EF%BC%9A"><span class="nav-number">1.2.0.2.0.1.</span> <span class="nav-text">注意事项：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-String-%E7%B1%BB%E5%AF%B9%E8%B1%A1%E6%98%AF%E2%80%9C%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%AD%97%E7%AC%A6%E4%B8%B2%E2%80%9D%EF%BC%8C%E5%8D%B3%E6%98%AF%E8%AF%B4String%E7%B1%BB%E5%AF%B9%E8%B1%A1%E6%97%A0%E6%B3%95%E7%9B%B4%E6%8E%A5%E5%AF%B9%E6%89%80%E8%B5%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%86%85%E5%AE%B9%E8%BF%9B%E8%A1%8C%E6%9B%B4%E6%94%B9"><span class="nav-number">1.2.0.2.0.2.</span> <span class="nav-text">1. String 类对象是“不可变字符串”，即是说String类对象无法直接对所赋字符串的内容进行更改</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-%E6%AF%94%E8%BE%83%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%98%AF%E5%90%A6%E7%9B%B8%E7%AD%89%E6%97%B6%EF%BC%8C%E4%B8%8D%E6%98%AF%E4%BD%BF%E7%94%A8-%EF%BC%8C%E8%80%8C%E6%98%AF%E4%BD%BF%E7%94%A8-equals-%E6%96%B9%E6%B3%95%EF%BC%8C%E4%BE%8B%E5%A6%82%EF%BC%9A"><span class="nav-number">1.2.0.2.0.3.</span> <span class="nav-text">2. 比较字符串是否相等时，不是使用 &#x3D;&#x3D; ，而是使用 .equals() 方法，例如：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E9%82%A3%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%88%91%E4%B8%8D%E6%83%B3%E5%8C%BA%E5%88%86%E5%A4%A7%E5%B0%8F%E5%86%99%EF%BC%8C%E5%B0%B1%E7%94%A8-equalsIgnoreCase-%E6%96%B9%E6%B3%95%E6%9D%A5%E6%AF%94%E8%BE%83"><span class="nav-number">1.2.0.2.0.4.</span> <span class="nav-text">那，如果我不想区分大小写，就用 .equalsIgnoreCase() 方法来比较</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A9%BA%E4%B8%B2%E4%B8%8ENull%E4%B8%B2%EF%BC%9A"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">空串与Null串：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="nav-number">1.2.0.3.0.1.</span> <span class="nav-text">区别：</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E4%B8%8E%E8%BE%93%E5%87%BA"><span class="nav-number">1.3.</span> <span class="nav-text">输入与输出</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link"><span class="nav-number">1.3.0.0.0.1.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AF%B9%E4%B8%8A%E9%9D%A2%E7%9A%84%E4%BB%A3%E7%A0%81%E4%B8%80%E8%A1%8C%E8%A1%8C%E5%88%86%E6%9E%90%EF%BC%9A"><span class="nav-number">1.3.0.0.0.2.</span> <span class="nav-text">对上面的代码一行行分析：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-Scanner-input-new-Scanner-System-in"><span class="nav-number">1.3.0.0.0.3.</span> <span class="nav-text">1.Scanner input &#x3D; new Scanner(System.in)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-int-i-input-nextInt"><span class="nav-number">1.3.0.0.0.4.</span> <span class="nav-text">2.int i &#x3D; input.nextInt() :</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8C%BA%E5%88%AB%EF%BC%9A-1"><span class="nav-number">1.3.0.0.1.</span> <span class="nav-text">区别：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#3-System-out-println-Hello-World"><span class="nav-number">1.3.0.0.1.1.</span> <span class="nav-text">3.System.out.println(&quot;Hello,World&quot;);</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%87%BA"><span class="nav-number">1.3.0.0.2.</span> <span class="nav-text">格式化输出</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AC%E6%8D%A2%E7%AC%A6%EF%BC%9A"><span class="nav-number">1.3.0.0.2.1.</span> <span class="nav-text">常用的转换符：</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E7%A7%8D%E7%AE%80%E5%8D%95%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E2%80%94%E2%80%94%E6%95%B0%E7%BB%84"><span class="nav-number">1.4.</span> <span class="nav-text">一种简单的数据结构——数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E6%95%B0%E7%BB%84"><span class="nav-number">1.4.1.</span> <span class="nav-text">关于数组</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F"><span class="nav-number">1.4.1.0.0.1.</span> <span class="nav-text">注意:</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for-each-%E5%BE%AA%E7%8E%AF"><span class="nav-number">1.4.2.</span> <span class="nav-text">for each 循环</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%AA%E5%AE%8C%E5%BE%85%E7%BB%AD%C2%B7%C2%B7%C2%B7%C2%B7%C2%B7%C2%B7"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">未完待续······</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="KItide"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">KItide</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/KItide" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;KItide" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://example.com/" title="https:&#x2F;&#x2F;example.com">Title</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/06/%E7%AE%80%E5%8D%95%E7%9A%84Java%E8%AF%AD%E6%B3%95-%E8%A1%A5%E4%B8%81%E7%89%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KItide">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KItide">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="简单的Java语法 | KItide">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          简单的Java语法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-03-06 19:49:52 / 修改时间：20:55:58" itemprop="dateCreated datePublished" datetime="2025-03-06T19:49:52+08:00">2025-03-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="简单的Java语法-后续"><a href="#简单的Java语法-后续" class="headerlink" title="简单的Java语法-后续"></a>简单的Java语法-后续</h1><h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><p>简单地讲，就是Java语言（JDK）能识别的运算符号（**不只是针对“数”**而言）</p>
+<h6 id="基本的五个数字运算符：-分别对应加、减、乘、除、取余"><a href="#基本的五个数字运算符：-分别对应加、减、乘、除、取余" class="headerlink" title="基本的五个数字运算符：+ - * / % 分别对应加、减、乘、除、取余"></a>基本的五个数字运算符：<code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>%</code> 分别对应加、减、乘、除、取余</h6><p>结合前面的数据类型讲点特别的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">int</span> num_1, num_2;</span><br><span class="line">        <span class="type">double</span> num_3, num_4;</span><br><span class="line">        num_1 = <span class="number">12</span> / <span class="number">5</span>;</span><br><span class="line">        num_2 = <span class="number">14</span> / <span class="number">5</span>;</span><br><span class="line">        num_3 = <span class="number">12</span> / <span class="number">5</span>;</span><br><span class="line">        num_4 = <span class="number">12.0</span> / <span class="number">5</span>;</span><br><span class="line">        System.out.println(<span class="string">&quot;num_1 is &quot;</span> + num_1);</span><br><span class="line">        System.out.println(<span class="string">&quot;num_2 is &quot;</span> + num_2);</span><br><span class="line">        System.out.println(<span class="string">&quot;num_3 is &quot;</span> + num_3);</span><br><span class="line">        System.out.println(<span class="string">&quot;num_4 is &quot;</span> + num_4);</span><br><span class="line">        num_1 = <span class="number">1</span> / <span class="number">3</span>;</span><br><span class="line">        num_2 = <span class="number">4</span> / <span class="number">3</span>;</span><br><span class="line">        num_3 = <span class="number">3</span>;</span><br><span class="line">        System.out.println(<span class="string">&quot;现在 num_1 的值为  &quot;</span> + num_1);</span><br><span class="line">        System.out.println(<span class="string">&quot;现在 num_2 的值为  &quot;</span> + num_2);</span><br><span class="line">        System.out.println(<span class="string">&quot;现在 num_3 的值为  &quot;</span> + num_3);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//运行结果如下:</span></span><br><span class="line">num_1 is <span class="number">2</span></span><br><span class="line">num_2 is <span class="number">2</span></span><br><span class="line">num_3 is <span class="number">2.0</span></span><br><span class="line">num_4 is <span class="number">2.4</span></span><br><span class="line">现在 num_1 的值为  <span class="number">0</span></span><br><span class="line">现在 num_2 的值为  <span class="number">1</span></span><br><span class="line">现在 num_3 的值为  <span class="number">3.0</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看出，如果是<strong>整数与整数之间的除法</strong>，结果是会自动取整数部分，<strong>舍去小数</strong>部分</p>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>java中的字符串是一种用双引号<code>&quot;&quot;</code>包裹的任何内容。</p>
+<p>但在Java中，字符串本身不算是一种基本数据类型，而是在标准 Java 类库中（可以理解为默认自带的库）内置了一个<strong>预定义类</strong>，它的类名叫做<code>String</code>。可以用这个类<strong>实例化出一个对象</strong>用于保存字符串，格式如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">greeting</span> <span class="operator">=</span> <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">如果暂时不理解或记不住该怎么用，就类比基本数据类型的定义 </span></span><br><span class="line"><span class="comment">(数据类型) (变量名) = 初始化值</span></span><br><span class="line"><span class="comment">int a = 5</span></span><br><span class="line"><span class="comment">String 对象名 = &quot;字符串内容&quot;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="从字符串中提取字符串——子串"><a href="#从字符串中提取字符串——子串" class="headerlink" title="从字符串中提取字符串——子串"></a>从字符串中提取字符串——子串</h4><p>String 类的 substring 方法可以从一个字符串a提取出一个子串(长度 &lt;&#x3D; a的长度)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">a</span> <span class="operator">=</span> <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> a.substring(<span class="number">0</span>,<span class="number">3</span>); <span class="comment">//  0-2位置的字符</span></span><br><span class="line">System.out.println(s); </span><br><span class="line"><span class="comment">//  s = &quot;Hel&quot;，输出结果为：Hel</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="字符串之间的拼接"><a href="#字符串之间的拼接" class="headerlink" title="字符串之间的拼接"></a>字符串之间的拼接</h4><p>Java语言允许使用 + 号连接（拼接）两个字符，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">x</span> <span class="operator">=</span> <span class="string">&quot;abcd&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">y</span> <span class="operator">=</span> <span class="string">&quot;efgh&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">z</span> <span class="operator">=</span> x+y;</span><br><span class="line">System.out.println(z);</span><br></pre></td></tr></table></figure>
+
+<p>当将一个字符串与一个非字符串的值进行拼接时，后者被转换成字符串，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">x</span> <span class="operator">=</span> <span class="string">&quot;abcd&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">y</span> <span class="operator">=</span> <span class="string">&quot;efgh&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">z</span> <span class="operator">=</span> x+y;</span><br><span class="line">System.out.println(x+<span class="string">&quot;+&quot;</span>+y+<span class="string">&quot;=&quot;</span>+z);</span><br><span class="line"><span class="comment">//输出结果为：“abcd+efgh=abcdefgh”</span></span><br></pre></td></tr></table></figure>
+
+<p>如果需要把多个字符串放在一起， 用一个定界符分隔，可以使用静态 join 方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">all</span> <span class="operator">=</span> String.join(<span class="string">&quot; / &quot;</span>, <span class="string">&quot;S&quot;</span>, <span class="string">&quot;M&quot;</span>, <span class="string">&quot;L&quot;</span>, <span class="string">&quot;XL&quot;</span>);</span><br><span class="line">System.out.println(all);</span><br><span class="line"><span class="comment">//输出结果为：“S / M / L / XL”</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h6><h6 id="1-String-类对象是“不可变字符串”，即是说String类对象无法直接对所赋字符串的内容进行更改"><a href="#1-String-类对象是“不可变字符串”，即是说String类对象无法直接对所赋字符串的内容进行更改" class="headerlink" title="1. String 类对象是“不可变字符串”，即是说String类对象无法直接对所赋字符串的内容进行更改"></a>1. String 类对象是“<strong>不可变字符串</strong>”，即是说String类对象无法直接对所赋字符串的内容进行更改</h6><h6 id="2-比较字符串是否相等时，不是使用-，而是使用-equals-方法，例如："><a href="#2-比较字符串是否相等时，不是使用-，而是使用-equals-方法，例如：" class="headerlink" title="2. 比较字符串是否相等时，不是使用 == ，而是使用 .equals() 方法，例如："></a>2. 比较字符串是否相等时，不是使用 <code>==</code> ，而是使用 <code>.equals()</code> 方法，例如：</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">t</span> <span class="operator">=</span> <span class="string">&quot;HellO&quot;</span>;</span><br><span class="line"><span class="keyword">if</span> (s.equals(t))</span><br><span class="line">    System.out.println(<span class="string">&quot;两字符串相等&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h6 id="那，如果我不想区分大小写，就用-equalsIgnoreCase-方法来比较"><a href="#那，如果我不想区分大小写，就用-equalsIgnoreCase-方法来比较" class="headerlink" title="那，如果我不想区分大小写，就用 .equalsIgnoreCase() 方法来比较"></a>那，如果我不想区分大小写，就用 <code>.equalsIgnoreCase()</code> 方法来比较</h6><h4 id="空串与Null串："><a href="#空串与Null串：" class="headerlink" title="空串与Null串："></a>空串与Null串：</h4><p> 空串  <code>&quot;&quot;</code>  是长度为 0 的字符串。可以调用以下代码检查一个字符串是否为空：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>; <span class="comment">//  此时的字符串str就是一个空串</span></span><br><span class="line"><span class="keyword">if</span> (str.length == <span class="number">0</span>) <span class="comment">// 用 str.length == 0 来判断str是否是空串</span></span><br></pre></td></tr></table></figure>
+
+<p>空串是一个 Java 对象， 有自己的串长度（ 0 ) 和内容（空）</p>
+<p>但Null串不是一个对象，更谈不上串长度和串内容，要检查一个字符串是否为 null：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="literal">null</span>; <span class="comment">//  此时的字符串str就是一个null串</span></span><br><span class="line"><span class="keyword">if</span> (str == <span class="literal">null</span>) <span class="comment">// 用 str == null 来判断str是否是null串</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="区别："><a href="#区别：" class="headerlink" title="区别："></a>区别：</h6><p>空串就好比<strong>方程在实数范围内有解但解x&#x3D;0</strong>；</p>
+<p>但null串就好比<strong>方程在实数范围内无解</strong>。</p>
+<h2 id="输入与输出"><a href="#输入与输出" class="headerlink" title="输入与输出"></a><strong>输入与输出</strong></h2><p>下面我们还是从一个例子讲起：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner; <span class="comment">// 想要使用Scanner类就必须加上这一句</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span></span><br><span class="line">	&#123;</span><br><span class="line">        <span class="type">Scanner</span> <span class="variable">input</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> input.nextInt(); <span class="comment">//  读取控制台输入的int型数据，并赋值给i</span></span><br><span class="line">        input.close; <span class="comment">//  input输入流的关闭</span></span><br><span class="line">		System.out.println(i);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id=""><a href="#" class="headerlink" title=""></a></h6><h6 id="对上面的代码一行行分析："><a href="#对上面的代码一行行分析：" class="headerlink" title="对上面的代码一行行分析："></a>对上面的代码一行行分析：</h6><h6 id="1-Scanner-input-new-Scanner-System-in"><a href="#1-Scanner-input-new-Scanner-System-in" class="headerlink" title="1.Scanner input = new Scanner(System.in)"></a>1.<code>Scanner input = new Scanner(System.in)</code></h6><p>这是一条标准的类的实例化语句；</p>
+<p><code>Scanner</code> : 具体的类名</p>
+<p><code>input</code> : 自定义的对象名</p>
+<p><code>new</code> : 类实例化出对象必须要用到的关键字</p>
+<p><code>Scanner(System.in)</code> : System.in是参数，参数的不同可能导致实例化出的对象所拥有的方法不同（具体看你的类是怎么定义的）</p>
+<p>总而言之，目前可以把这个当成<strong>输入流程的固定格式</strong></p>
+<h6 id="2-int-i-input-nextInt"><a href="#2-int-i-input-nextInt" class="headerlink" title="2.int i = input.nextInt() :"></a>2.<code>int i = input.nextInt()</code> :</h6><p><code>int i =</code> : 这个操作是为了将 <code>=</code> 后面获取到的数据给储存起来</p>
+<p><code>input.nextInt()</code> : input对象使用 .nextInt() 方法查找并返回（获取）输入的int型数据，返回值类型是int。</p>
+<p>同理，想要其他数据类型可以调用以下<strong>Scanner类的内置方法</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. next(): 用于查找并返回输入的数据，返回值类型是String；</span><br><span class="line">2. nextInt(): 用于查找并返回输入的int型数据，返回值类型是int；</span><br><span class="line">3. nextDouble(),nextFloat(),nextLong()等，都与nextInt()方法类似；</span><br><span class="line">4. nextLine();用于读取一行的数据，并将它返回；</span><br><span class="line">5. hasNextLine():用于判断下一行是否有输入，返回值类型为boolean；</span><br><span class="line">6. hasNextInt():用于判断下一个输入的值是否为Int型数据，返回值类型为boolean；（注意：该方法的判断遇到空格就停止）</span><br></pre></td></tr></table></figure>
+
+<h5 id="区别：-1"><a href="#区别：-1" class="headerlink" title="区别："></a>区别：</h5><p>next()、nextInt()、nextDouble…这类方法只能读取数值，不能识别空格，碰到空格直接停止并返回了。而 nextLine()是一次读取一行数据，可以包含空格。</p>
+<h6 id="3-System-out-println-Hello-World"><a href="#3-System-out-println-Hello-World" class="headerlink" title="3.System.out.println(&quot;Hello,World&quot;);"></a>3.<code>System.out.println(&quot;Hello,World&quot;);</code></h6><p>这是Java中很常见的输出语句。由 <code>System.out</code> 提供的输出方法，可以在输出信息后追加一个换行，除此以外 <code>System.out</code> 提供的输出方法还有：</p>
+<blockquote>
+<p>System.out.printf()用于对输出内容进行格式化操作；</p>
+<p>System.out.println()输出信息后追加一个换行；</p>
+<p>System.out.print()输出之后不追加换行；</p>
+</blockquote>
+<h5 id="格式化输出"><a href="#格式化输出" class="headerlink" title="格式化输出"></a>格式化输出</h5><p><code>System.out.print()</code>方法可以使用以 <code>%</code> 开头的、被定义好了的<strong>转换符</strong>进行占位替换操作</p>
+<h6 id="常用的转换符："><a href="#常用的转换符：" class="headerlink" title="常用的转换符："></a>常用的转换符：</h6><table>
+<thead>
+<tr>
+<th>转换符</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%s</td>
+<td>字符串类型</td>
+<td>“mingrisoft”</td>
+</tr>
+<tr>
+<td>%c</td>
+<td>字符类型</td>
+<td>‘m’</td>
+</tr>
+<tr>
+<td>%b</td>
+<td>布尔类型</td>
+<td>true</td>
+</tr>
+<tr>
+<td>%d</td>
+<td>整数类型（十进制）</td>
+<td>99</td>
+</tr>
+<tr>
+<td>%x</td>
+<td>整数类型（十六进制）</td>
+<td>FF</td>
+</tr>
+<tr>
+<td>%o</td>
+<td>整数类型（八进制）</td>
+<td>77</td>
+</tr>
+<tr>
+<td>%f</td>
+<td>浮点类型</td>
+<td>99.99</td>
+</tr>
+<tr>
+<td>%a</td>
+<td>十六进制浮点类型</td>
+<td>FF.35AE</td>
+</tr>
+<tr>
+<td>%e</td>
+<td>指数类型</td>
+<td>9.38e+5</td>
+</tr>
+<tr>
+<td>%%</td>
+<td>百分比类型</td>
+<td>％</td>
+</tr>
+<tr>
+<td>%n</td>
+<td>换行符</td>
+<td></td>
+</tr>
+<tr>
+<td>%tx</td>
+<td>日期与时间类型（x代表不同的日期与时间转换符)</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>让我们来实践一下：（请自行在自己的平台上运行测试出结果，实践永远是最快的学习方式）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">float</span> = <span class="number">2</span>;</span><br><span class="line">str = <span class="string">&quot;aaaaaaaa&quot;</span> <span class="comment">//  长度为8个字符的字符串</span></span><br><span class="line">System.out.printf(<span class="string">&quot;%s&quot;</span>,str);</span><br><span class="line">System.out.printf(<span class="string">&quot;%8.2f&quot;</span>,x);<span class="comment">//将x用8个字符宽度和小数点后保留两位的格式打印x</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>同样也可以使用多个参数: （name 和 age自己去声明和初始化）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.out.printf(<span class="string">&quot;Hello, %s. Next year, you&#x27;ll be %d&quot;</span>, name, age);</span><br></pre></td></tr></table></figure>
+
+<p>另外：</p>
+<ul>
+<li><p><em><strong>可作为了解，暂时不要求掌握</strong></em>，java中的String类内置了一个静态方法 <code>.format()</code> </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">message</span> <span class="operator">=</span> String.format(<span class="string">&quot;Hello, %s. Next year, you&#x27;ll be %d&quot;</span>, name , age);  <span class="comment">//  根据具体需求组合出自己想要的字符串，比起直接实例化来得更灵活</span></span><br><span class="line"></span><br><span class="line"><span class="type">double</span> <span class="variable">x</span> <span class="operator">=</span> <span class="number">1.123</span>;</span><br><span class="line">System.out.println(String.format(<span class="string">&quot;%.2f&quot;</span>,x)); <span class="comment">//  甚至可以在println方法中实现printf格式化</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="一种简单的数据结构——数组"><a href="#一种简单的数据结构——数组" class="headerlink" title="一种简单的数据结构——数组"></a>一种简单的数据结构——数组</h2><h3 id="关于数组"><a href="#关于数组" class="headerlink" title="关于数组"></a>关于数组</h3><p>数组是一种数据结构， 用来存储同一类型值的集合。通过一个整型下标可以访问数组中 的每一个值。例 如， 如果 a 是一个整型数组， a[i] 就是数组中下标为 i 的整数。</p>
+<p><del>是不是看得很迷糊（滑稽）？</del>  来看通俗一点的解释吧：</p>
+<ol>
+<li><p>如果给你一堆同样类型的数据让你储存起来，就比如班上40个人，统计分数，(假设大家考的都是整数分)，总不可能你自己在程序的源代码里一个个地声明、初始化40个整型变量吧(<strong><del>不会真的有人想这么做吧</del>)</strong>，这个时候，我们就可以使用数组简单的声明一下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] a = <span class="keyword">new</span> <span class="title class_">int</span> [<span class="number">40</span>];</span><br><span class="line"><span class="comment">//  或者int a[] = new int [40];</span></span><br></pre></td></tr></table></figure>
+
+<p>这样，可以储存40个整型数据的位置就开辟出来了，剩下的就只用初始化就行了。</p>
+</li>
+<li><p>那么我们把40个数据填充进去后，如果想更改原来某个分数（或者查看某个分数）时，该怎么办呢？不要担心，数组设置了<strong>下标</strong>这个东西来对数组的某个位置进行“标记”，通过对这个位置的引用，就可以实现对  原本放入这个位置的元素  的访问和更改操作。</p>
+<h6 id="注意"><a href="#注意" class="headerlink" title="注意:"></a>注意:</h6><ul>
+<li>数组的下标从 数字0开始而不是数字1，例如，长度为40个元素的数组下标范围是  0 ~ 39，而不是0 ~ 40，如果此时下标使用了40，会报错（数组越界）</li>
+<li>在创建了数组后，只有给数组初始化之后，该数组才允许被访问</li>
+<li>boolean 数组的元素会初始化为 false 对象数组的元素则初始化为一个特殊值 null（这里暂时不理解也不要紧，后面会讲到）</li>
+</ul>
+</li>
+</ol>
+<h3 id="for-each-循环"><a href="#for-each-循环" class="headerlink" title="for each 循环"></a>for each 循环</h3><p>Java 有一种功能很强的循环结构， 可以用来依次处理数组（元素集合）中的每个元素（其他类型的元素集合亦可） 而不必为指定下标值而分心（因为会依次循环一遍）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*  对比一下普通for循环</span></span><br><span class="line"><span class="comment">for (int i = 0; i &lt;= 100; i++)</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">	循环条件满足时执行的语句···</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (variable : collection)</span><br><span class="line">&#123;</span><br><span class="line">	statement <span class="comment">//  循环条件满足时执行的语句</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">variable是在该循环里定义的局部变量（临时变量），只能在该for each循环中使用，用于暂存每一次循环时从collection取出的元素</span></span><br><span class="line"><span class="comment">而for each语句的循环流程就是把collection里的每个元素赋值给variable，并在每次赋值后执行statement，完成一次循环，一直循环到collection里的每个元素都使用过为止</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//  实例：求整数1~3的和</span></span><br><span class="line"><span class="type">int</span> a[<span class="number">3</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i : a)</span><br><span class="line">&#123;</span><br><span class="line">	num = num + i; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="未完待续······"><a href="#未完待续······" class="headerlink" title="未完待续······"></a>未完待续······</h4><p><strong>作业1：输入一个学生的5门课程的成绩，求其平均分</strong></p>
+<p><strong>作业2：判断0-200（包括0和200）之间有多少个奇数，并输出所有奇数。</strong></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/java/" rel="tag"># java</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/03/06/%E5%93%88%E5%A3%AB%E5%A5%87%E9%A9%BE%E5%88%B0%E9%98%9F%E7%9A%84wp/" rel="prev" title="校园ctf比赛部分题解">
+                  <i class="fa fa-angle-left"></i> 校园ctf比赛部分题解
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/03/06/%E7%AE%80%E5%8D%95%E7%9A%84Java%E8%AF%AD%E6%B3%95-%E7%B2%BE%E7%AE%80%E7%89%88/" rel="next" title="简单的Java语法--精简版">
+                  简单的Java语法--精简版 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">KItide</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

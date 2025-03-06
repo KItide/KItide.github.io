@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="SQL基础 如下罗列了几类常见的SQL语句的基础用法  DDL：data define language数据定义语言用DDL操作数据库查询数据库 查看所有数据库  1show databases;   查看当前数据库：  1select database();  创建数据库 可以在创建的时候指定字符集 也可以判断下是否存在数据库  1create database [if not exists]">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库教程">
+<meta property="og:url" content="http://example.com/2025/03/06/SQL%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="KItide">
+<meta property="og:description" content="SQL基础 如下罗列了几类常见的SQL语句的基础用法  DDL：data define language数据定义语言用DDL操作数据库查询数据库 查看所有数据库  1show databases;   查看当前数据库：  1select database();  创建数据库 可以在创建的时候指定字符集 也可以判断下是否存在数据库  1create database [if not exists]">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-03-06T11:49:52.309Z">
+<meta property="article:modified_time" content="2025-03-06T12:46:38.617Z">
+<meta property="article:author" content="KItide">
+<meta property="article:tag" content="sql">
+<meta property="article:tag" content="数据库">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/03/06/SQL%E5%9F%BA%E7%A1%80/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/03/06/SQL%E5%9F%BA%E7%A1%80/","path":"2025/03/06/SQL基础/","title":"数据库教程"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数据库教程 | KItide</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">KItide</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">SQL基础</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DDL%EF%BC%9Adata-define-language%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E8%AF%AD%E8%A8%80"><span class="nav-number">2.</span> <span class="nav-text">DDL：data define language数据定义语言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8DDL%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">2.1.</span> <span class="nav-text">用DDL操作数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">2.1.1.</span> <span class="nav-text">查询数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">2.1.2.</span> <span class="nav-text">创建数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">2.1.3.</span> <span class="nav-text">删除数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">2.1.4.</span> <span class="nav-text">使用数据库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8DDL%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="nav-number">2.2.</span> <span class="nav-text">用DDL操作数据表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A8%E6%9F%A5%E8%AF%A2"><span class="nav-number">2.2.1.</span> <span class="nav-text">表查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E5%BD%93%E5%89%8D%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%89%E5%93%AA%E4%BA%9B%E8%A1%A8"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">查询当前数据库有哪些表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E8%A1%A8%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">查看表的结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E8%A1%A8%E7%9A%84%E5%BB%BA%E8%A1%A8%E8%AF%AD%E5%8F%A5%EF%BC%8C%E8%83%BD%E7%9C%8B%E5%88%B0%E6%9B%B4%E8%AF%A6%E7%BB%86%E7%9A%84%E4%BF%A1%E6%81%AF"><span class="nav-number">2.2.1.3.</span> <span class="nav-text">查看表的建表语句，能看到更详细的信息</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.2.2.</span> <span class="nav-text">表的数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E5%80%BC%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">数值类型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%95%B4%E5%9E%8B%EF%BC%9A%E5%AD%98%E5%82%A8%E7%9A%84%E5%A4%A7%E5%B0%8F%E5%8C%BA%E5%88%AB"><span class="nav-number">2.2.2.1.1.</span> <span class="nav-text">整型：存储的大小区别</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E5%9E%8B"><span class="nav-number">2.2.2.1.2.</span> <span class="nav-text">浮点型</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E5%AD%97%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">文字类型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#char%E7%B1%BB%E5%9E%8B%EF%BC%9A%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0%E6%8D%AE"><span class="nav-number">2.2.2.2.1.</span> <span class="nav-text">char类型：字符串数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#blob%E7%B1%BB%E5%9E%8B%EF%BC%9A%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%95%B0%E6%8D%AE"><span class="nav-number">2.2.2.2.2.</span> <span class="nav-text">blob类型：二进制数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#text%E7%B1%BB%E5%9E%8B%EF%BC%9A%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE"><span class="nav-number">2.2.2.2.3.</span> <span class="nav-text">text类型：文本数据</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%A5%E6%9C%9F%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.2.2.3.</span> <span class="nav-text">日期类型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#date"><span class="nav-number">2.2.2.3.1.</span> <span class="nav-text">date</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#time"><span class="nav-number">2.2.2.3.2.</span> <span class="nav-text">time</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#year"><span class="nav-number">2.2.2.3.3.</span> <span class="nav-text">year</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#datetime"><span class="nav-number">2.2.2.3.4.</span> <span class="nav-text">datetime</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#timestamp%EF%BC%9A"><span class="nav-number">2.2.2.3.5.</span> <span class="nav-text">timestamp：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%BA%E8%A1%A8%E6%93%8D%E4%BD%9Ccreate-table"><span class="nav-number">2.2.3.</span> <span class="nav-text">建表操作create table</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%A6%E6%9D%9F%EF%BC%9A%E5%AF%B9%E8%A1%A8%E7%9A%84%E7%BB%93%E6%9E%84%E4%BD%9C%E4%B8%80%E4%BA%9B%E7%BA%A6%E6%9D%9F%EF%BC%8C%E5%AE%8C%E6%88%90%E6%9C%89%E5%90%84%E7%A7%8D%E5%A4%8D%E6%9D%82%E5%8A%9F%E8%83%BD%E7%9A%84%E8%A1%A8"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">约束：对表的结构作一些约束，完成有各种复杂功能的表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E8%B7%B5%EF%BC%9A%E5%AD%A6%E4%BC%9A%E6%A0%B9%E6%8D%AE%E9%9C%80%E6%B1%82%E5%88%9B%E5%BB%BA%E8%A1%A8"><span class="nav-number">2.2.3.2.</span> <span class="nav-text">实践：学会根据需求创建表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E8%A1%A8%E7%9A%84%E7%BB%93%E6%9E%84%EF%BC%9Aalter-table"><span class="nav-number">2.2.4.</span> <span class="nav-text">修改表的结构：alter table</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DML%EF%BC%9Adata-manipulation-language%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E8%AF%AD%E8%A8%80"><span class="nav-number">3.</span> <span class="nav-text">DML：data manipulation language数据处理语言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%8E%E4%B9%88%E7%94%A8where%E5%AD%90%E5%8F%A5"><span class="nav-number">3.1.</span> <span class="nav-text">怎么用where子句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">3.1.1.</span> <span class="nav-text">逻辑运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E5%AD%97-Order-BY%EF%BC%9A"><span class="nav-number">3.1.2.</span> <span class="nav-text">关键字 Order BY：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0SQL-%E5%87%BD%E6%95%B0"><span class="nav-number">3.1.3.</span> <span class="nav-text">函数SQL 函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E6%9F%A5%E8%AF%A2%EF%BC%9Aselect"><span class="nav-number">3.2.</span> <span class="nav-text">数据的查询：select</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E6%8F%92%E5%85%A5"><span class="nav-number">3.3.</span> <span class="nav-text">数据的插入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E5%88%A0%E9%99%A4"><span class="nav-number">3.4.</span> <span class="nav-text">数据的删除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E6%9B%B4%E6%94%B9"><span class="nav-number">3.5.</span> <span class="nav-text">数据的更改</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="KItide"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">KItide</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/KItide" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;KItide" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://example.com/" title="https:&#x2F;&#x2F;example.com">Title</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/06/SQL%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KItide">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KItide">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="数据库教程 | KItide">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据库教程
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-03-06 19:49:52 / 修改时间：20:46:38" itemprop="dateCreated datePublished" datetime="2025-03-06T19:49:52+08:00">2025-03-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%99%E7%A8%8B/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="SQL基础"><a href="#SQL基础" class="headerlink" title="SQL基础"></a>SQL基础</h1><ul>
+<li>如下罗列了几类常见的SQL语句的基础用法</li>
+</ul>
+<h1 id="DDL：data-define-language数据定义语言"><a href="#DDL：data-define-language数据定义语言" class="headerlink" title="DDL：data define language数据定义语言"></a>DDL：data define language数据定义语言</h1><h2 id="用DDL操作数据库"><a href="#用DDL操作数据库" class="headerlink" title="用DDL操作数据库"></a>用DDL操作数据库</h2><h3 id="查询数据库"><a href="#查询数据库" class="headerlink" title="查询数据库"></a>查询数据库</h3><ul>
+<li>查看所有数据库</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show databases;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查看当前数据库：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select database();</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><ul>
+<li>可以在创建的时候指定字符集</li>
+<li>也可以判断下是否存在数据库</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create database [if not exists] 数据库名 [default charset 字符集] [排序规则];</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h3><ul>
+<li>危险操作，执行之前先判断数据的重要性，或者查看是否已经备份，删库跑路，牢底坐穿</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop database [if exists] 数据库名;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="使用数据库"><a href="#使用数据库" class="headerlink" title="使用数据库"></a>使用数据库</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use database 数据库名;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="用DDL操作数据表"><a href="#用DDL操作数据表" class="headerlink" title="用DDL操作数据表"></a>用DDL操作数据表</h2><h3 id="表查询"><a href="#表查询" class="headerlink" title="表查询"></a>表查询</h3><ul>
+<li>表的查询操作需要进入这个数据库才能操作，比如use test;</li>
+</ul>
+<h4 id="查询当前数据库有哪些表"><a href="#查询当前数据库有哪些表" class="headerlink" title="查询当前数据库有哪些表"></a>查询当前数据库有哪些表</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show tables;</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看表的结构"><a href="#查看表的结构" class="headerlink" title="查看表的结构"></a>查看表的结构</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">desc 表名;</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看表的建表语句，能看到更详细的信息"><a href="#查看表的建表语句，能看到更详细的信息" class="headerlink" title="查看表的建表语句，能看到更详细的信息"></a>查看表的建表语句，能看到更详细的信息</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show create table 表名;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="表的数据类型"><a href="#表的数据类型" class="headerlink" title="表的数据类型"></a>表的数据类型</h3><h4 id="数值类型"><a href="#数值类型" class="headerlink" title="数值类型"></a>数值类型</h4><h5 id="整型：存储的大小区别"><a href="#整型：存储的大小区别" class="headerlink" title="整型：存储的大小区别"></a>整型：存储的大小区别</h5><ul>
+<li>tinyint</li>
+<li>smallint</li>
+<li>mediumint</li>
+<li>int</li>
+<li>bigint</li>
+</ul>
+<h5 id="浮点型"><a href="#浮点型" class="headerlink" title="浮点型"></a>浮点型</h5><ul>
+<li>float</li>
+<li>double</li>
+</ul>
+<h4 id="文字类型"><a href="#文字类型" class="headerlink" title="文字类型"></a>文字类型</h4><h5 id="char类型：字符串数据"><a href="#char类型：字符串数据" class="headerlink" title="char类型：字符串数据"></a>char类型：字符串数据</h5><ul>
+<li>char</li>
+<li>varchar</li>
+</ul>
+<h5 id="blob类型：二进制数据"><a href="#blob类型：二进制数据" class="headerlink" title="blob类型：二进制数据"></a>blob类型：二进制数据</h5><ul>
+<li>tinyblob</li>
+<li>mediumblob</li>
+<li>blob</li>
+<li>longblob</li>
+</ul>
+<h5 id="text类型：文本数据"><a href="#text类型：文本数据" class="headerlink" title="text类型：文本数据"></a>text类型：文本数据</h5><ul>
+<li>tinytext</li>
+<li>mediumtext</li>
+<li>text</li>
+<li>longtext</li>
+</ul>
+<h4 id="日期类型"><a href="#日期类型" class="headerlink" title="日期类型"></a>日期类型</h4><h5 id="date"><a href="#date" class="headerlink" title="date"></a>date</h5><ul>
+<li>保存日期信息：YYYY-MM-DD</li>
+</ul>
+<h5 id="time"><a href="#time" class="headerlink" title="time"></a>time</h5><ul>
+<li>保存时间信息：HH:MM:SS</li>
+</ul>
+<h5 id="year"><a href="#year" class="headerlink" title="year"></a>year</h5><ul>
+<li>保存年份信息：YYYY</li>
+</ul>
+<h5 id="datetime"><a href="#datetime" class="headerlink" title="datetime"></a>datetime</h5><ul>
+<li>日期和时间信息混合：YYYY-MM-DD HH:MM:SS</li>
+</ul>
+<h5 id="timestamp："><a href="#timestamp：" class="headerlink" title="timestamp："></a>timestamp：</h5><ul>
+<li>时间戳，类似datetime</li>
+</ul>
+<h3 id="建表操作create-table"><a href="#建表操作create-table" class="headerlink" title="建表操作create table"></a>建表操作create table</h3><ul>
+<li>最后一个字段不能写逗号</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">create table 表名 (</span><br><span class="line">  字段一 类型 [限制语句][comment 注释],</span><br><span class="line">  字段二 类型 [限制语句][comment 注释],</span><br><span class="line">  字段三 类型 [限制语句][comment 注释],</span><br><span class="line">  ...</span><br><span class="line">  字段n 类型 [限制语句]</span><br><span class="line">)  [限制语句][comment 注释];</span><br></pre></td></tr></table></figure>
+
+<h4 id="约束：对表的结构作一些约束，完成有各种复杂功能的表"><a href="#约束：对表的结构作一些约束，完成有各种复杂功能的表" class="headerlink" title="约束：对表的结构作一些约束，完成有各种复杂功能的表"></a>约束：对表的结构作一些约束，完成有各种复杂功能的表</h4><ul>
+<li>常见约束： <ul>
+<li><strong>NOT NULL</strong> - 指示某列不能存储 NULL 值 </li>
+<li><strong>UNIQUE</strong> - 保证某列的每行必须有唯一的值</li>
+<li><strong>PRIMARY KEY</strong> - NOT NULL 和 UNIQUE 的结合。确保某列（或两个列多个列的结合）有唯一标识，有助于更容易更快速地找到表中的一个特定的记录</li>
+<li><strong>FOREIGN KEY</strong> - 保证一个表中的数据匹配另一个表中的值的参照完整性 </li>
+<li><strong>CHECK</strong> - 保证列中的值符合指定的条件 </li>
+<li><strong>DEFAULT</strong> - 规定没有给列赋值时的默认值</li>
+<li>UNSIGNED   规定不区分正负（数字）</li>
+</ul>
+</li>
+</ul>
+<h4 id="实践：学会根据需求创建表"><a href="#实践：学会根据需求创建表" class="headerlink" title="实践：学会根据需求创建表"></a>实践：学会根据需求创建表</h4><p>创建一张学生信息表</p>
+<ul>
+<li>id                                         	学生id</li>
+<li>stu_num 					学号</li>
+<li>name					学生姓名</li>
+<li>academy					学生学院</li>
+<li>class					学生所在班级</li>
+<li>profession				学生的专业</li>
+<li>entry_date 				学生的入学日期</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">create table `student`(</span><br><span class="line">  `id` INT auto_increment not null primary key,</span><br><span class="line">  `stu_num` INT not null,</span><br><span class="line">  `name` VARCHAR(20) not null default &quot;ikun&quot;,</span><br><span class="line">  `academy` VARCHAR(20) not null,</span><br><span class="line">  `class` INT not null,</span><br><span class="line">  `profession` VARCHAR(20) not null,</span><br><span class="line">  `entry_date` date not null default &quot;2021-8-8&quot;</span><br><span class="line">)comment &quot;这是一张学生表&quot;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h3 id="修改表的结构：alter-table"><a href="#修改表的结构：alter-table" class="headerlink" title="修改表的结构：alter table"></a>修改表的结构：alter table</h3><p>可以理解为对表的列的操作</p>
+<ul>
+<li>rename</li>
+<li>add</li>
+<li>modify</li>
+<li>change</li>
+<li>drop</li>
+</ul>
+<p>用法示例：</p>
+<ul>
+<li>重命名表：rename</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table &lt;表名&gt; rename &lt;新表名&gt;</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>添加一列：add</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table tablename add  &lt;列名&gt; &lt;类型&gt;;</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>修改一列：modify和change</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table tablename modify column  &lt;列名&gt; &lt;新列类型&gt;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table tablename change column &lt;旧列名&gt; &lt;新列名&gt; &lt;新列类型&gt;;</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>删除一列：drop</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table tablename drop column &lt;列名&gt;;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="DML：data-manipulation-language数据处理语言"><a href="#DML：data-manipulation-language数据处理语言" class="headerlink" title="DML：data manipulation language数据处理语言"></a>DML：data manipulation language数据处理语言</h1><ul>
+<li>可以理解为直接操作表的行</li>
+<li>分为数据的增删改查，注意体会和前面的区别</li>
+</ul>
+<h2 id="怎么用where子句"><a href="#怎么用where子句" class="headerlink" title="怎么用where子句"></a>怎么用where子句</h2><ul>
+<li>where子句是DML中一个非常重要的部分，它帮助我们完成更加复杂的数据库处理逻辑</li>
+</ul>
+<p>Where 子句运算符</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x3D;</td>
+<td>等于</td>
+</tr>
+<tr>
+<td>&lt;&gt;</td>
+<td>不等于。在 SQL 的一些版本中，该操作符可被写成 !&#x3D;</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>大于</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>小于</td>
+</tr>
+<tr>
+<td>&gt;&#x3D;</td>
+<td>大于等于</td>
+</tr>
+<tr>
+<td>&lt;&#x3D;</td>
+<td>小于等于</td>
+</tr>
+<tr>
+<td>BETWEEN</td>
+<td>在某个范围内</td>
+</tr>
+<tr>
+<td>LIKE</td>
+<td>搜索某种模式</td>
+</tr>
+<tr>
+<td>IN</td>
+<td>指定针对某个列的多个可能值</td>
+</tr>
+</tbody></table>
+<h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3><ul>
+<li>我们可以使用逻辑运算符对where子句进行多重限制</li>
+</ul>
+<ol>
+<li><strong>and</strong></li>
+<li><strong>or</strong></li>
+<li><strong>not</strong></li>
+</ol>
+<p><strong>如下面的句子：查找名称为cxk，id为1的用户</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from user where name=&quot;cxk&quot; and id=1 </span><br></pre></td></tr></table></figure>
+
+<h3 id="关键字-Order-BY："><a href="#关键字-Order-BY：" class="headerlink" title="关键字 Order BY："></a>关键字 Order BY：</h3><ul>
+<li>对数字列而言：以数字的大小排序</li>
+<li>对字母列而言：首先看字母的长度，其次看字母的顺序</li>
+</ul>
+<ol>
+<li>对检索的数据进行排序 order by &lt;列名…&gt;;        </li>
+<li>默认按照列名升序排序 order by &lt;列名…&gt;; </li>
+<li>添加desc; 按照列名降序排序</li>
+</ol>
+<p>下面示例通过id的升序查看user表：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from user order by id;</span><br></pre></td></tr></table></figure>
+
+<h3 id="函数SQL-函数"><a href="#函数SQL-函数" class="headerlink" title="函数SQL 函数"></a>函数SQL 函数</h3><ul>
+<li>AVG() - 返回平均值</li>
+<li>COUNT() - 返回行数 </li>
+<li>FIRST() - 返回第一个记录的值 </li>
+<li>LAST() - 返回最后一个记录的值 </li>
+<li>MAX() - 返回最大值 </li>
+<li>MIN() - 返回最小值 </li>
+<li>SUM() - 返回总和</li>
+</ul>
+<p>下面示例获取某一列数据的平均值，其它用法类似</p>
+<ul>
+<li>需要注意的是，函数需要跟在查询语句之后</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT AVG(column_name) FROM table_name;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="数据的查询：select"><a href="#数据的查询：select" class="headerlink" title="数据的查询：select"></a>数据的查询：select</h2><ul>
+<li>可以通过添加distinct关键字查询无重复字段</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select * from &lt;表名&gt;;</span><br><span class="line">select &lt;字段&gt; [, &lt;字段&gt;...] from &lt;表名&gt;;</span><br><span class="line">select distinct [&lt;字段&gt;... 或者 *] from &lt;表名&gt;;</span><br></pre></td></tr></table></figure>
+<p>下面的例子在user按照我们的要求获取信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">##获取user表的所有字段</span><br><span class="line">select * from user;</span><br><span class="line">##只获取user表中的id字段</span><br><span class="line">select id,username from user;</span><br><span class="line">##添加distinct关键字获取无重复的数据</span><br><span class="line">select distinct question from user;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+<h2 id="数据的插入"><a href="#数据的插入" class="headerlink" title="数据的插入"></a>数据的插入</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">insert into &lt;表名&gt; values (值,.,.,.,.);</span><br><span class="line">insert into &lt;表名&gt; (列名,...) values (值,.,.,.);</span><br></pre></td></tr></table></figure>
+<p>下面的示例向user表中插入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into user (username, password, question, question_content) values(&quot;cxk&quot;, &quot;114514&quot;, &quot;你的名字叫什么&quot;, &quot;我是练习时长两年半的个人练习生蔡徐坤&quot;);</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="数据的删除"><a href="#数据的删除" class="headerlink" title="数据的删除"></a>数据的删除</h2><ul>
+<li>如果不带where子句的话是将表的内容全部删除</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from &lt;表名&gt;  [where &lt;表达式&gt;] </span><br></pre></td></tr></table></figure>
+<p>下面的示例删除user表中id为1的一条数据：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from user where id=1</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h2 id="数据的更改"><a href="#数据的更改" class="headerlink" title="数据的更改"></a>数据的更改</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update &lt;表名&gt; set &lt;字段&gt; =&lt;值&gt; [, &lt;字段&gt; =&lt;值&gt;...] [where 表达式]</span><br></pre></td></tr></table></figure>
+<p>下面是一个示例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update user set username=&quot;cxk&quot;,password=&quot;114514&quot; where id=2;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/sql/" rel="tag"># sql</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag"># 数据库</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/03/06/IDEA%E7%9A%84%E5%AE%89%E8%A3%85/" rel="prev" title="IDEA的安装">
+                  <i class="fa fa-angle-left"></i> IDEA的安装
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/03/06/%E5%93%88%E5%A3%AB%E5%A5%87%E9%A9%BE%E5%88%B0%E9%98%9F%E7%9A%84wp/" rel="next" title="校园ctf比赛部分题解">
+                  校园ctf比赛部分题解 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">KItide</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

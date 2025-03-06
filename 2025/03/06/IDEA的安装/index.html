@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="说在前面的一些话： 关于Q&amp;A 关于为什么想写这个安装教程？ 面向小白的入门教学， 不过是教学任务的一部分罢了，也算是工作需要吧  之后会想着继续写一些教学性质的博客文章吗？ 应该会继续写下去，不过更多的是知识总结类型的较多  后面的文章大致会涉及哪些类？      看个人兴趣，但主要还是更新一些代码技术向的博客（ 大概吧）…… 那好，我们话不多说，正式开始  前置要求众所周知，IDE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IDEA的安装">
+<meta property="og:url" content="http://example.com/2025/03/06/IDEA%E7%9A%84%E5%AE%89%E8%A3%85/index.html">
+<meta property="og:site_name" content="KItide">
+<meta property="og:description" content="说在前面的一些话： 关于Q&amp;A 关于为什么想写这个安装教程？ 面向小白的入门教学， 不过是教学任务的一部分罢了，也算是工作需要吧  之后会想着继续写一些教学性质的博客文章吗？ 应该会继续写下去，不过更多的是知识总结类型的较多  后面的文章大致会涉及哪些类？      看个人兴趣，但主要还是更新一些代码技术向的博客（ 大概吧）…… 那好，我们话不多说，正式开始  前置要求众所周知，IDE">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310140158137.png">
+<meta property="og:image" content="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310140200733.png">
+<meta property="og:image" content="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310140213678.png">
+<meta property="og:image" content="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310140239134.png">
+<meta property="og:image" content="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310140249690.png">
+<meta property="og:image" content="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310140303699.png">
+<meta property="og:image" content="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310142344271.png">
+<meta property="og:image" content="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310142358032.png">
+<meta property="og:image" content="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310150003990.png">
+<meta property="og:image" content="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310150032291.png">
+<meta property="og:image" content="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310242125506.png">
+<meta property="og:image" content="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310242201233.png">
+<meta property="og:image" content="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310242216275.png">
+<meta property="og:image" content="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310242225675.png">
+<meta property="og:image" content="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310242325236.png">
+<meta property="og:image" content="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310242327313.png">
+<meta property="og:image" content="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310250128738.png">
+<meta property="article:published_time" content="2025-03-06T11:49:52.304Z">
+<meta property="article:modified_time" content="2025-03-06T12:54:09.436Z">
+<meta property="article:author" content="KItide">
+<meta property="article:tag" content="IDEA">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310140158137.png">
+
+
+<link rel="canonical" href="http://example.com/2025/03/06/IDEA%E7%9A%84%E5%AE%89%E8%A3%85/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/03/06/IDEA%E7%9A%84%E5%AE%89%E8%A3%85/","path":"2025/03/06/IDEA的安装/","title":"IDEA的安装"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>IDEA的安装 | KItide</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">KItide</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%B4%E5%9C%A8%E5%89%8D%E9%9D%A2%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AF%9D%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">说在前面的一些话：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E4%BA%8EQ-A"><span class="nav-number">1.1.</span> <span class="nav-text">关于Q&amp;A</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE%E8%A6%81%E6%B1%82"><span class="nav-number"></span> <span class="nav-text">前置要求</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Java%EF%BC%9A"><span class="nav-number">0.0.1.</span> <span class="nav-text">Java：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%85%B3%E4%BA%8Ejava%E5%92%8CIDEA%E7%9A%84%E5%86%85%E5%AE%B9%E5%B0%B1%E5%A4%A7%E6%A6%82%E5%B0%B1%E8%AE%B2%E5%88%B0%E8%BF%99%E9%87%8C%EF%BC%8C%E7%9B%AE%E5%89%8D%E5%AF%B9Java%E5%92%8CIDEA%E5%A4%A7%E8%87%B4%E6%9C%89%E4%B8%AA%E5%8D%B0%E8%B1%A1%E5%B0%B1%E8%A1%8C%EF%BC%8C%E7%AD%89%E5%88%B0%E5%90%8E%E9%9D%A2%E6%9C%89%E5%85%B4%E8%B6%A3%E5%8F%AF%E4%BB%A5%E8%87%AA%E8%A1%8C%E7%99%BE%E5%BA%A6%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9%EF%BC%8C%E6%88%96%E8%80%85-%E5%8E%BB%E9%97%AE%E5%AD%A6%E9%95%BF%E5%AD%A6%E5%A7%90%EF%BC%88%E5%89%8D%E8%BE%88%EF%BC%89"><span class="nav-number">0.0.1.1.</span> <span class="nav-text">关于java和IDEA的内容就大概就讲到这里，目前对Java和IDEA大致有个印象就行，等到后面有兴趣可以自行百度相关内容，或者  去问学长学姐（前辈）</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%80%9CJAVA%E8%AF%AD%E8%A8%80%E2%80%9D%E7%9A%84%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">“JAVA语言”的下载与安装</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9C%A8IDEA%E9%87%8C%E4%B8%8B%E8%BD%BD%E6%83%B3%E8%A6%81%E7%9A%84JDK"><span class="nav-number">1.0.1.</span> <span class="nav-text">在IDEA里下载想要的JDK</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%B0%E4%B8%93%E9%97%A8%E6%8F%90%E4%BE%9Bjava%E8%AF%AD%E8%A8%80%E7%9A%84%E7%BD%91%E7%AB%99%E5%8E%BB%E4%B8%8B%E8%BD%BD"><span class="nav-number">1.0.2.</span> <span class="nav-text">到专门提供java语言的网站去下载</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E9%A6%96%E5%85%88%E6%98%AF%E6%A3%80%E6%9F%A5%E8%87%AA%E5%B7%B1%E7%9A%84%E7%94%B5%E8%84%91%E6%98%AF32%E4%BD%8D%E8%BF%98%E6%98%AF64%E4%BD%8D%EF%BC%88%E8%99%BD%E7%84%B6%E8%BF%99%E4%B8%80%E6%AD%A5%E6%88%91%E4%B9%9F%E8%A7%89%E5%BE%97%E6%B2%A1%E6%9C%89%E5%BF%85%E8%A6%81%EF%BC%8C%E6%AF%95%E7%AB%9F%E7%8E%B0%E5%9C%A8%E7%9A%84%E4%B8%AA%E4%BA%BA%E7%94%B5%E8%84%91%E5%9F%BA%E6%9C%AC%E9%83%BD%E6%98%AF64%E4%BD%8D%E7%9A%84%E4%BA%86%EF%BC%8C%E4%BD%86%E6%B5%81%E7%A8%8B%E8%BF%98%E6%98%AF%E8%A6%81%E8%B5%B0%E4%B8%80%E4%B8%8B%E7%9A%84%EF%BC%89%EF%BC%8C%E8%87%B3%E4%BA%8E%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%EF%BC%8C%E5%AF%B9%E4%BA%8E%E5%B0%8F%E7%99%BD%E6%9D%A5%E8%AE%B2%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E6%96%B9%E5%BC%8F%E5%B0%B1%E6%98%AF%E9%BC%A0%E6%A0%87%E5%8F%B3%E5%87%BB%E6%A1%8C%E9%9D%A2%E4%B8%8A-%E2%80%9C%E6%AD%A4%E7%94%B5%E8%84%91%E2%80%9D%E5%9B%BE%E6%A0%87%EF%BC%8C%E9%80%89%E6%8B%A9%E5%B1%9E%E6%80%A7%E5%B9%B6%E7%82%B9%E5%87%BB%E4%B9%8B%E5%90%8E%EF%BC%8C%E5%8D%B3%E5%8F%AF%E8%BF%9B%E5%85%A5%E8%AE%BE%E7%BD%AE%E7%95%8C%E9%9D%A2%E6%9F%A5%E7%9C%8B%E5%88%B0"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">首先是检查自己的电脑是32位还是64位（虽然这一步我也觉得没有必要，毕竟现在的个人电脑基本都是64位的了，但流程还是要走一下的），至于如何查看，对于小白来讲最简单的方式就是鼠标右击桌面上  “此电脑”图标，选择属性并点击之后，即可进入设置界面查看到</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%9B%E5%85%A5%E4%B8%8A%E9%9D%A2%E7%BB%99%E7%9A%84%E7%BD%91%E5%9D%80%E7%9A%84%E7%BD%91%E9%A1%B5%E5%B9%B6%E9%80%89%E6%8B%A9%E5%A5%BD%E9%80%82%E9%85%8D%E8%87%AA%E5%B7%B1%E7%94%B5%E8%84%91%E7%9A%84%E9%80%89%E9%A1%B9"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">进入上面给的网址的网页并选择好适配自己电脑的选项</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%A5%BD%E9%82%A3%E4%B8%AA-exe%E6%96%87%E4%BB%B6%E4%B9%8B%E5%90%8E%E4%B8%8D%E8%A6%81%E7%8C%B4%E6%80%A5%E5%9C%B0%E7%AB%8B%E9%A9%AC%E5%B0%B1%E7%82%B9%E5%87%BB%E8%BF%90%E8%A1%8C%EF%BC%8C%E5%A6%82%E6%9E%9C%E4%BD%A0%E4%B8%8D%E6%83%B3%E5%9C%A8%E6%97%A5%E5%90%8E%E9%9D%A2%E5%AF%B9shit%E4%B8%80%E6%A0%B7%E7%9A%84%E6%96%87%E4%BB%B6%E5%AD%98%E6%94%BE%EF%BC%8C%E9%82%A3%E4%B9%88%E5%B0%B1%E8%AF%B7%E6%8A%8A%E5%AF%B9%E5%BA%94%E7%9A%84%E6%96%87%E4%BB%B6%E5%88%86%E5%A5%BD%E7%B1%BB%E6%94%BE%E5%88%B0%E5%AF%B9%E5%BA%94%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="nav-number">1.0.2.3.</span> <span class="nav-text">下载好那个.exe文件之后不要猴急地立马就点击运行，如果你不想在日后面对shit一样的文件存放，那么就请把对应的文件分好类放到对应的位置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%86%E8%AE%B0%E4%BD%8F%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">但记住：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A0%E5%AD%98%E6%94%BE%E7%9A%84%E8%B7%AF%E5%BE%84%E4%B8%8D%E8%83%BD%E6%9C%89%E4%B8%AD%E6%96%87%EF%BC%81%E3%80%81%E8%B7%AF%E5%BE%84%E4%B8%8D%E8%83%BD%E6%9C%89%E4%B8%AD%E6%96%87%EF%BC%81%E3%80%81%E8%B7%AF%E5%BE%84%E4%B8%8D%E8%83%BD%E6%9C%89%E4%B8%AD%E6%96%87%EF%BC%81-%E9%87%8D%E8%A6%81%E7%9A%84%E4%BA%8B%E6%83%85%E8%AF%B4%E4%B8%89%E9%81%8D"><span class="nav-number">1.1.1.</span> <span class="nav-text">①存放的路径不能有中文！、路径不能有中文！、路径不能有中文！(重要的事情说三遍)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A1%E4%B8%8D%E8%A6%81%E6%9C%89%E5%A5%87%E6%80%AA%E7%9A%84%E7%AC%A6%E5%8F%B7%EF%BC%81%E3%80%81%E4%B8%8D%E8%A6%81%E6%9C%89%E5%A5%87%E6%80%AA%E7%9A%84%E7%AC%A6%E5%8F%B7%EF%BC%81%E3%80%81%E4%B8%8D%E8%A6%81%E6%9C%89%E5%A5%87%E6%80%AA%E7%9A%84%E7%AC%A6%E5%8F%B7%EF%BC%81-%E9%87%8D%E8%A6%81%E7%9A%84%E4%BA%8B%E6%83%85%E8%AF%B4%E4%B8%89%E9%81%8D"><span class="nav-number">1.1.2.</span> <span class="nav-text">②不要有奇怪的符号！、不要有奇怪的符号！、不要有奇怪的符号！(重要的事情说三遍)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A2%E8%B7%AF%E5%BE%84%E4%B8%AD%E6%9C%80%E5%A5%BD%E5%8F%AA%E5%8C%85%E5%90%AB%E8%8B%B1%E6%96%87%E5%AD%97%E6%AF%8D%E3%80%81%E6%95%B0%E5%AD%97%E3%80%81%E2%80%9C-%E2%80%9D%E8%BF%99%E4%B8%89%E8%80%85%E7%9A%84%E7%BB%84%E5%90%88"><span class="nav-number">1.1.3.</span> <span class="nav-text">③路径中最好只包含英文字母、数字、“_”这三者的组合</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">设置环境变量</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%9C%A8cmd%E9%87%8C%E9%AA%8C%E8%AF%81%E5%89%8D%E9%9D%A2%E7%9A%84%E6%93%8D%E4%BD%9C%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">在cmd里验证前面的操作是否成功</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E5%AE%89%E8%A3%85"><span class="nav-number"></span> <span class="nav-text">开始安装</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%95%BF%E8%AF%9D%E7%9F%AD%E8%AF%B4%EF%BC%8CToolBox%E6%98%AF%E4%B8%80%E4%B8%AA%E4%B8%93%E9%97%A8%E7%AE%A1%E7%90%86%E5%90%84%E7%A7%8DJetBrains%E5%87%BA%E5%93%81%E7%9A%84IDE%E7%9A%84%E7%A8%8B%E5%BA%8F%EF%BC%8C%E9%9D%9E%E5%B8%B8%E5%A5%BD%E7%94%A8%EF%BC%88toolbox%E7%90%86%E6%89%80%E5%BD%93%E7%84%B6%E7%9A%84%E4%B9%9F%E6%98%AFJetBrains%E5%87%BA%E5%93%81%E7%9A%84%E7%A8%8B%E5%BA%8F%EF%BC%89"><span class="nav-number">0.0.1.</span> <span class="nav-text">长话短说，ToolBox是一个专门管理各种JetBrains出品的IDE的程序，非常好用（toolbox理所当然的也是JetBrains出品的程序）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E4%B8%8B%E8%BD%BD"><span class="nav-number">0.0.2.</span> <span class="nav-text">开始下载</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%A0%E5%A5%BD%EF%BC%8C%E4%B8%96%E7%95%8C%EF%BC%81"><span class="nav-number"></span> <span class="nav-text">你好，世界！</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B-%E9%A1%B9%E7%9B%AE"><span class="nav-number">0.1.</span> <span class="nav-text">新建一个工程 &#x2F; 项目</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="KItide"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">KItide</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/KItide" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;KItide" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://example.com/" title="https:&#x2F;&#x2F;example.com">Title</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/06/IDEA%E7%9A%84%E5%AE%89%E8%A3%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KItide">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KItide">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="IDEA的安装 | KItide">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          IDEA的安装
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-03-06 19:49:52 / 修改时间：20:54:09" itemprop="dateCreated datePublished" datetime="2025-03-06T19:49:52+08:00">2025-03-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><blockquote>
+<blockquote>
+<h3 id="说在前面的一些话："><a href="#说在前面的一些话：" class="headerlink" title="说在前面的一些话："></a>说在前面的一些话：</h3></blockquote>
+<h4 id="关于Q-A"><a href="#关于Q-A" class="headerlink" title="关于Q&amp;A"></a><strong>关于Q&amp;A</strong></h4><ol>
+<li><p><em>关于为什么想写这个安装教程？</em></p>
+<p>面向小白的入门教学， <del>不过是教学任务的一部分罢了</del>，也算是工作需要吧</p>
+</li>
+<li><p><em>之后会想着继续写一些教学性质的博客文章吗？</em></p>
+<p>应该会继续写下去，不过更多的是知识总结类型的较多</p>
+</li>
+<li><p><em>后面的文章大致会涉及哪些类？</em></p>
+</li>
+</ol>
+<p>   看个人兴趣，但主要还是更新一些代码技术向的博客（ 大概吧）……</p>
+<p>那好，我们话不多说，正式开始</p>
+</blockquote>
+<h1 id="前置要求"><a href="#前置要求" class="headerlink" title="前置要求"></a>前置要求</h1><p>众所周知，IDEA（全名：<strong>IntelliJ IDEA</strong>）是一款由“JB”公司（全称为：<a target="_blank" rel="noopener" href="https://www.jetbrains.com/zh-cn/">JetBrains</a>）推出的功能强大的  “<strong>java集成开发环境</strong>”（Java IDE）工具软件。</p>
+<p>简而言之，这玩意就是你进行java学习和开发的好帮手（没有之一）；说到这，就不得不提到Java这一门编程语言了：</p>
+<blockquote>
+<h5 id="Java："><a href="#Java：" class="headerlink" title="Java："></a>Java：</h5><p><del><em><u>一门著名的以啰嗦为特色的编程语言</u></em></del>……</p>
+<p>咳咳，不开玩笑了，用通俗的话来描述：Java是一门语言，一门计算机语言（没错，广义上这玩意和汉语、英语一样都是一种可以被人类看懂的语言），有自己的语法，作用是表达出“人的意图”然后让间接地让计算机能“读懂人的意图”，实现“人与计算机的沟通”（注：这里的  <strong>‘人与计算机的沟通’</strong>  指的是人给计算机下达指令，计算机正确理解指令的内容并去执行指令） </p>
+<h6 id="关于java和IDEA的内容就大概就讲到这里，目前对Java和IDEA大致有个印象就行，等到后面有兴趣可以自行百度相关内容，或者-去问学长学姐（前辈）"><a href="#关于java和IDEA的内容就大概就讲到这里，目前对Java和IDEA大致有个印象就行，等到后面有兴趣可以自行百度相关内容，或者-去问学长学姐（前辈）" class="headerlink" title="关于java和IDEA的内容就大概就讲到这里，目前对Java和IDEA大致有个印象就行，等到后面有兴趣可以自行百度相关内容，或者  去问学长学姐（前辈）"></a><u>关于java和IDEA的内容就大概就讲到这里，目前对Java和IDEA大致有个印象就行，等到后面有兴趣可以自行百度相关内容，或者  去问学长学姐（前辈）</u></h6></blockquote>
+<p>所以，目前理清下已知的信息—— 使用java语言编程–&gt; 使用IDEA辅助java开发</p>
+<h3 id="“JAVA语言”的下载与安装"><a href="#“JAVA语言”的下载与安装" class="headerlink" title="“JAVA语言”的下载与安装"></a>“JAVA语言”的下载与安装</h3><p>那么问题来了，这个所谓的“java语言”又从哪里来呢？答案是从网上下载，目前的话，提供两种下载方式</p>
+<ol>
+<li>到专门提供java语言的网站下载</li>
+<li>等到安装好IDEA之后，在IDEA内部下载IDEA提供的“Java语言”安装包</li>
+</ol>
+<p>第二种下载方式等到下面安装好IDEA之后会专门说明，目前咱们就说一说第一种下载方式吧（这里为了以防万一就分别讲讲两种主流操作系统方向Windows和Linux下的Java语言安装，mac os本文不太会涉及到，毕竟还没来得及安装black apple┭┮﹏┭┮，但安装操作还是可以类比Linux下的操作）</p>
+<h5 id="在IDEA里下载想要的JDK"><a href="#在IDEA里下载想要的JDK" class="headerlink" title="在IDEA里下载想要的JDK"></a>在IDEA里下载想要的JDK</h5><h5 id="到专门提供java语言的网站去下载"><a href="#到专门提供java语言的网站去下载" class="headerlink" title="到专门提供java语言的网站去下载"></a>到专门提供java语言的网站去下载</h5><blockquote>
+<p>这里稍微提一嘴，如果你分不清你的电脑是Windows还是Linux（虽然我觉得应该不会有这么离谱的情况，但还是要打个预防针），就请好好看着你电脑桌面底部的状态栏，如果有Windows的图标（大致就是四个方块堆积在一起），那就是Windows操作系统，否则就默认Linux操作系统，这里可以验证一下，同时按下键盘上的<code>Ctrl</code> 、<code>Alt</code> 、<code>T</code>三个键，Linux下应该是会唤出一个终端命令窗口</p>
+</blockquote>
+<p>在浏览器地址栏粘贴后面的这一串网址并点击回车键（即Enter键） <strong><code>https://www.oracle.com/cn/java/technologies/downloads/</code></strong>  或按住Ctrl点击后面的蓝色字体 <a target="_blank" rel="noopener" href="https://www.oracle.com/cn/java/technologies/downloads/">Java Downloads | Oracle 中国</a></p>
+<ul>
+<li><p>Windows操作系统下安装Java语言的操作</p>
+<ul>
+<li><h6 id="首先是检查自己的电脑是32位还是64位（虽然这一步我也觉得没有必要，毕竟现在的个人电脑基本都是64位的了，但流程还是要走一下的），至于如何查看，对于小白来讲最简单的方式就是鼠标右击桌面上-“此电脑”图标，选择属性并点击之后，即可进入设置界面查看到"><a href="#首先是检查自己的电脑是32位还是64位（虽然这一步我也觉得没有必要，毕竟现在的个人电脑基本都是64位的了，但流程还是要走一下的），至于如何查看，对于小白来讲最简单的方式就是鼠标右击桌面上-“此电脑”图标，选择属性并点击之后，即可进入设置界面查看到" class="headerlink" title="首先是检查自己的电脑是32位还是64位（虽然这一步我也觉得没有必要，毕竟现在的个人电脑基本都是64位的了，但流程还是要走一下的），至于如何查看，对于小白来讲最简单的方式就是鼠标右击桌面上  “此电脑”图标，选择属性并点击之后，即可进入设置界面查看到"></a>首先是检查自己的电脑是32位还是64位（虽然这一步我也觉得没有必要，毕竟现在的个人电脑基本都是64位的了，但流程还是要走一下的），至于如何查看，对于小白来讲最简单的方式就是鼠标右击桌面上  “此电脑”图标，选择属性并点击之后，即可进入设置界面查看到</h6><p><img src="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310140158137.png" alt="此电脑属性"></p>
+<p><img src="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310140200733.png" alt="setting_about"></p>
+</li>
+<li><h6 id="进入上面给的网址的网页并选择好适配自己电脑的选项"><a href="#进入上面给的网址的网页并选择好适配自己电脑的选项" class="headerlink" title="进入上面给的网址的网页并选择好适配自己电脑的选项"></a>进入上面给的网址的网页并选择好适配自己电脑的选项</h6><p>当前时间为 ： <strong>2023&#x2F;10&#x2F;14</strong> ; 进入网页后会看到以下的图示网页效果</p>
+<p>按照我在图里标识的文字进行选择</p>
+<p><img src="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310140213678.png" alt="JDK_download"></p>
+<p>这个我选择<code>JDK 21</code> 、<code>Windows</code> 、 <code>x64 Installer</code> (其实选择JDK 17也是可以的) ，点击<strong>x64 Installer</strong>后面对应的网址下载.exe</p>
+<p>文件</p>
+<blockquote>
+<p>注：这里无论是JDK 21 还是 JDK 17 均没有提供32位电脑的JDK下载，实际上32位电脑最高也只能下载JDK 8了</p>
+<p>如果你的电脑真的不幸就是32位，那么就进入下面的网页</p>
+<p><a target="_blank" rel="noopener" href="https://www.oracle.com/cn/java/technologies/javase/javase8u211-later-archive-downloads.html">https://www.oracle.com/cn/java/technologies/javase/javase8u211-later-archive-downloads.html</a></p>
+<p>往下翻到<code>Windows x86 Installer</code>的那一项点击链接下载</p>
+</blockquote>
+</li>
+<li><h6 id="下载好那个-exe文件之后不要猴急地立马就点击运行，如果你不想在日后面对shit一样的文件存放，那么就请把对应的文件分好类放到对应的位置"><a href="#下载好那个-exe文件之后不要猴急地立马就点击运行，如果你不想在日后面对shit一样的文件存放，那么就请把对应的文件分好类放到对应的位置" class="headerlink" title="下载好那个.exe文件之后不要猴急地立马就点击运行，如果你不想在日后面对shit一样的文件存放，那么就请把对应的文件分好类放到对应的位置"></a>下载好那个.exe文件之后不要猴急地立马就点击运行，如果你不想在日后面对shit一样的文件存放，那么就请把对应的文件分好类放到对应的位置</h6><p>本人是建立了如下图这样的一个路径来存放JDK文件（如果你有更好的存放位置，就按照你的想法来存放就行）</p>
+<h4 id="但记住："><a href="#但记住：" class="headerlink" title="但记住："></a>但记住：</h4><h5 id="①存放的路径不能有中文！、路径不能有中文！、路径不能有中文！-重要的事情说三遍"><a href="#①存放的路径不能有中文！、路径不能有中文！、路径不能有中文！-重要的事情说三遍" class="headerlink" title="①存放的路径不能有中文！、路径不能有中文！、路径不能有中文！(重要的事情说三遍)"></a>①存放的路径不能有中文！、路径不能有中文！、路径不能有中文！(重要的事情说三遍)</h5><h5 id="②不要有奇怪的符号！、不要有奇怪的符号！、不要有奇怪的符号！-重要的事情说三遍"><a href="#②不要有奇怪的符号！、不要有奇怪的符号！、不要有奇怪的符号！-重要的事情说三遍" class="headerlink" title="②不要有奇怪的符号！、不要有奇怪的符号！、不要有奇怪的符号！(重要的事情说三遍)"></a>②不要有奇怪的符号！、不要有奇怪的符号！、不要有奇怪的符号！(重要的事情说三遍)</h5><h5 id="③路径中最好只包含英文字母、数字、“-”这三者的组合"><a href="#③路径中最好只包含英文字母、数字、“-”这三者的组合" class="headerlink" title="③路径中最好只包含英文字母、数字、“_”这三者的组合"></a>③路径中最好只包含英文字母、数字、“_”这三者的组合</h5><p><img src="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310140239134.png" alt="JDK_set"></p>
+<p>存放好该.exe文件后，点击开始运行，系统应该会要一些许可权限，给它就行，出现下面的界面就表示正式开始选择安装了</p>
+<p><img src="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310140249690.png" alt="enter_add"></p>
+<p>点击下一步，出现下面的页面：</p>
+<p><img src="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310140303699.png" alt="change_dir"></p>
+<p>安装完成之后如下图：</p>
+<blockquote>
+<p>到这里需要特别注意的是，我们需要复制当前文件夹的完整的路径，就比如我的复制的完整路径就是：</p>
+<p>**<code>D:\JavaDevelopEnvironment\JDK21</code> **  （你的电脑上不一定是这个，请根据你自己选择的安装位置进行查找复制）</p>
+<p>这个路径后面需要用到</p>
+</blockquote>
+<p><img src="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310142344271.png" alt="install_finished"></p>
+</li>
+<li><h6 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h6><blockquote>
+<p>完成上一步之后，按惯例来讲，应该是要设置**<code>JAVA_HOME</code><strong>和</strong><code>Path</code>**之后才能使用java语言，但是我们安装的JDK 21它会自动在C盘建立一个有着装有javac.exe的文件夹并把该文件夹的路径写入系统Path里，如下：（这里只是做个情况说明）</p>
+<p><img src="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310142358032.png" alt="explanation_situation"></p>
+<p>此时我们在cmd（即命令提示符窗口，不会打开的请自行百度  “<strong>如何打开cmd</strong>“ ）里输入**<code>java --version</code>** 会出现下面的信息：</p>
+<p><img src="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310150003990.png" alt="cmd_verify"></p>
+<p>其实到这里，java就可以说是安装好了，但为了方便我们后期对jdk进行管理，最好不要使用刚才在安装过程中 自动生成的这个文件夹，需要自己设置一些东西</p>
+</blockquote>
+<p>复制我们在安装完成后提到的那个完整路径，进入系统环境变量界面（可自行百度 <strong>“Windows如何进入系统环境变量”</strong>），新建一个环境变量，将事先复制好的路径粘贴进去：(注意事项如图)</p>
+<p><img src="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310150032291.png" alt="new_java_home_start"></p>
+<p>然后点击确认完成 <strong>JDK_21</strong>变量的建立，对于之前没有安装过java的宝子们，还需要按照上图所示的新建流程建立一个名为<br><strong>JAVA_HOME</strong>的环境变量，其变量值为  <strong>%JDK_21%</strong>  </p>
+<blockquote>
+<p>这里说一下，关于变量<strong>JAVA_HOME</strong>的值的格式就是这样，两个百分比号中间夹着一个变量名A，这样写代表着引用变量A的值，咱们在上面写的 <strong>%JDK_21%</strong>  表示的就是引用 <strong>JDK_21</strong>这个变量的值</p>
+<p>或许有些聪明的同学就会有一些疑问了：为什么要弄成这样一层套一层变量引用，直接把java_home的值设置成我下载的jdk21所在的路径不就行了吗</p>
+<p>目的：方便的JDK的版本控制</p>
+</blockquote>
+<p>然后，双击<code>Path</code>变量所在行（用户变量或者系统变量的里Path都可以），进入Path变量的编辑窗口：</p>
+<p><img src="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310242125506.png" alt="new_java_home_path"></p>
+<p>把它的值换成 <strong><code>%JAVA_HOME%\bin</code></strong></p>
+<blockquote>
+<p>这里可能有些同学的<code>Path</code>变量里没有上面的那行，没有关系，我们新建一行把 **<code>%JAVA_HOME%\bin</code>**添加上去即可</p>
+</blockquote>
+<p>改完了之后别忘了连续点击几个窗口的确定来保存你的修改</p>
+</li>
+<li><h6 id="在cmd里验证前面的操作是否成功"><a href="#在cmd里验证前面的操作是否成功" class="headerlink" title="在cmd里验证前面的操作是否成功"></a>在cmd里验证前面的操作是否成功</h6><p>按照上面开黑窗口cmd的流程走一遍就行了，不需要细说</p>
+</li>
+</ul>
+</li>
+<li><p>Linux操作系统下安装Java语言的操作（待后续完善）</p>
+<ul>
+<li><p>查看Linux发现版</p>
+</li>
+<li><p>与Windows的步骤差不多，进入上面给的网址的网页并选择好适配自己电脑的选项（或者通过内置的命令行直接在shell里下载对应版本的JDK）</p>
+</li>
+<li><p>next</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>附上Oracle提供的各JDK版本的网页：</p>
+<p><a target="_blank" rel="noopener" href="https://www.oracle.com/cn/java/technologies/downloads/archive/#JavaSE">Java Archive | Oracle 中国</a></p>
+<h1 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h1><p>这里仍然提供<strong>两种方式安装IDEA</strong></p>
+<ol>
+<li><p>通过ToolBox程序管理和更新（安装）IDEA</p>
+<h5 id="长话短说，ToolBox是一个专门管理各种JetBrains出品的IDE的程序，非常好用（toolbox理所当然的也是JetBrains出品的程序）"><a href="#长话短说，ToolBox是一个专门管理各种JetBrains出品的IDE的程序，非常好用（toolbox理所当然的也是JetBrains出品的程序）" class="headerlink" title="长话短说，ToolBox是一个专门管理各种JetBrains出品的IDE的程序，非常好用（toolbox理所当然的也是JetBrains出品的程序）"></a>长话短说，ToolBox是一个专门管理各种JetBrains出品的IDE的程序，非常好用（toolbox理所当然的也是JetBrains出品的程序）</h5><p><img src="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310242201233.png" alt="toolbox_install"></p>
+<p>如上图，找到自己电脑操作系统对应的安装文件并下载</p>
+<p>toolbox的下载安装这里就不多赘述了，除了toolbox程序的存放路径建议改一下（<strong>不要放在C盘，切记</strong>），其他的选项一直无脑下一步就行</p>
+<p>完成安装后启动它（当然它也有可能在安装完成自动启动），然后有条件的可以登录下它，咱们在使用它之前需要设置一些东西</p>
+<p><img src="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310242216275.png" alt="toolbox_setAgru"></p>
+<p><img src="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310242225675.png" alt="toolbox_setAgru"></p>
+<ul>
+<li><h5 id="开始下载"><a href="#开始下载" class="headerlink" title="开始下载"></a>开始下载</h5><p>细心的同学可能会发现，ToolBox里叫<strong>IntelliJ IDEA</strong>的好像有两个：</p>
+<p>一个是<strong>IntelliJ IDEA Community Editions</strong>，即IDEA社区版，</p>
+<p>另一个是<strong>IntelliJ IDEA UItimate</strong>，即IDEA专业版，</p>
+<table>
+<thead>
+<tr>
+<th><strong>IntelliJ IDEA Community Editions</strong></th>
+<th><strong>IntelliJ IDEA UItimate</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>免费</td>
+<td>收费 &#x2F; 学生认证可以免费</td>
+</tr>
+<tr>
+<td>java语言的学习够用了</td>
+<td>提供更强大的专业功能</td>
+</tr>
+<tr>
+<td>对学习者友好</td>
+<td>对开发者友好</td>
+</tr>
+</tbody></table>
+<p>就功能上而言肯定是专业版更强大，但如果没有学生认证或公司统一报销的话，IDEA社区版也是这个不错的选择(毕竟两种IDEA发行版在基本使用上没有本质区别)，当然富哥请随意</p>
+<p>在ToolBox选择适合自己的IDEA点击下载，然后等待</p>
+</li>
+<li><p>下载好之后在ToolBox里点击对应IDE的位置就可以直接打开了（以后都可以通过这种方式直接打开了），第一次打开会有一些基本配置的提示：</p>
+<p><img src="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310242325236.png" alt="idea_donot_improt_settings"></p>
+<p>允许IDEA通过Windows防火墙：</p>
+<p><img src="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310242327313.png" alt="idea_allow_pass_firewall"></p>
+</li>
+<li><p>认识IDEA基本界面</p>
+<p><img src="https://obssh.obs.cn-east-3.myhuaweicloud.com/img_xunguang/202310250128738.png" alt="idea_ui"></p>
+</li>
+<li><p>next</p>
+</li>
+</ul>
+</li>
+<li><p>到官网下载IDEA的安装程序并运行安装</p>
+</li>
+</ol>
+<h1 id="你好，世界！"><a href="#你好，世界！" class="headerlink" title="你好，世界！"></a>你好，世界！</h1><h4 id="新建一个工程-项目"><a href="#新建一个工程-项目" class="headerlink" title="新建一个工程 &#x2F; 项目"></a>新建一个工程 &#x2F; 项目</h4><p>在IDEA主页面左侧选择**“Projects”<strong>，然后点击</strong>New Project**，会弹出下面的窗口：</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/IDEA/" rel="tag"># IDEA</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/03/06/dvwa%E9%9D%B6%E5%9C%BA%E5%AE%9E%E6%88%98/" rel="prev" title="C语言关于变量与表达式">
+                  <i class="fa fa-angle-left"></i> C语言关于变量与表达式
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/03/06/SQL%E5%9F%BA%E7%A1%80/" rel="next" title="数据库教程">
+                  数据库教程 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">KItide</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

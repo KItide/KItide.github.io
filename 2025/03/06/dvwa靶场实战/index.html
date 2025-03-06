@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="dvwa靶场搭建1.下载配置phpstudy,启动apache和mysql数据库  2.官网下载靶机包，解压修改文件名称为DVWA后放入phpstudy的WWW目录下  3.phpstudy中创建网站 在域名中输入你修改的靶场文件名（DVWA)即可  4.修改配置文件，点开…WWW\DVWA\config目录下的config.inc.php 修改IP（本机127.0.0.1)、库名（默认dvwa不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言关于变量与表达式">
+<meta property="og:url" content="http://example.com/2025/03/06/dvwa%E9%9D%B6%E5%9C%BA%E5%AE%9E%E6%88%98/index.html">
+<meta property="og:site_name" content="KItide">
+<meta property="og:description" content="dvwa靶场搭建1.下载配置phpstudy,启动apache和mysql数据库  2.官网下载靶机包，解压修改文件名称为DVWA后放入phpstudy的WWW目录下  3.phpstudy中创建网站 在域名中输入你修改的靶场文件名（DVWA)即可  4.修改配置文件，点开…WWW\DVWA\config目录下的config.inc.php 修改IP（本机127.0.0.1)、库名（默认dvwa不">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/6da2fd5419c24bc7a4c3d5021f48aecb.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/42b3376875694fb49b772dd2af1478e5.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/3d7b837862574d5abfb007e6a985d50a.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/089c32bc573c455cae5eac1628ccee4c.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/f9941983b96b44978a9279d7270f7545.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/ae000b9e679d4c38b1de51fafaa93791.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/b527fc232d08454b97f9c023ecc4cb95.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/eb9a0e21e3224d6bb23f0e53419919b4.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/16a9994bc72d4ee38e980bd62200aa75.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/e1f03c60b08a4f6eb2f5197ad07f79a2.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/85007dc82b1441b1a428396a93463818.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/22d1d43ff07f4c0db0b3e2f071420cfc.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/7d8c13a3165d41b2aeb1441f06ab95f4.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/b881d56f145b44208efd29987398d44c.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/96f332a6eb2343bc9ad54d5de5cf9538.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/3b90638e617a46e0958a40e68cff9454.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/ce1cc371ee7645c3a7fb0079f58e8c14.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/7ac25b2390fd4c3098937d7cafdfcc05.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/2b9b4743a13a44fdba9a3bbba2ceb746.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/1b802d432ac14a9fbb550f1766959e48.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/ba0a453688ee43ed855f4b78da3e7608.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/c63b91bc6e784ef983ec7581f17beb7a.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/470dbe4b524d49ad8e01a1887ee0d4e5.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/693aff2b50434f3e95a1c27d3a05049c.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/aab9c5862af14bc1908e23b167de6e0b.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/19a51dc582824b249c9f835b94f32ef9.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/05fb45549c4b41aba9437a28eac99818.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/c886af611e524125b0867ba402daa830.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/ec8efa381bc8431ca1e4bdd69db0cae2.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/a121567a23284152a93eba1da4abf9ae.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/1d3a50d3d2754e0cae6add6c941252d0.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/07fb870c03f54789ab34666c8fcef84c.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/e8da0d170439411686a7bd033c91a6c7.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/ba795ba1ae0f405d97cfc004e9f729cb.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/c9b5b8801406400f9e979bf47bf82b81.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/91f8e931e7614c27be988924d6a469e5.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/901623c621024a219152411e141c9f70.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/148b7ca9af8a4947a189ea3d6ecb8d19.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/c65d76323f984d5192ae2214277ed735.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/71936b7d173b48039e94a8be297d26fe.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/f969041d0f604422b3da66faec331912.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/b71d8f85c6bb478fb2a8f66cf80a3743.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/be0d8cfd046842e78da69cb2ba940c66.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/7930cbbfe1dc4202a45b68d56ffec0ab.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/bf42827446034086bdb1dc06341c58a3.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/44979b8d0d7d43448bbc88b4f4e6ef15.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/b9aa226f381f4930b9fc8d1f61ebd990.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/ddeaa52044ee47ff9d1ce636be4e684a.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/fb2daee5d45b42b0bd5f6e7222aa9679.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/87e6cdee819c4f85b292eb4eaf93161e.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/35f66c011d544c5786b8a91fed7a407c.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/2743e06b0d674b60bd8156fce99f3735.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/41ac06c6a89f4a90ab3272a563a44e39.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/8b72434eefa14cd099c70ebe8cf302b0.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/2da4dee33a404f06b504e8b1f5c10f35.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/f8d5a36855994f098c031a4735021cc5.png">
+<meta property="og:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/3aa6689d47444ddfae71ddeb202c63be.png">
+<meta property="article:published_time" content="2025-03-06T11:49:52.300Z">
+<meta property="article:modified_time" content="2025-03-06T12:53:17.635Z">
+<meta property="article:author" content="KItide">
+<meta property="article:tag" content="靶场">
+<meta property="article:tag" content="ctf">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/6da2fd5419c24bc7a4c3d5021f48aecb.png">
+
+
+<link rel="canonical" href="http://example.com/2025/03/06/dvwa%E9%9D%B6%E5%9C%BA%E5%AE%9E%E6%88%98/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/03/06/dvwa%E9%9D%B6%E5%9C%BA%E5%AE%9E%E6%88%98/","path":"2025/03/06/dvwa靶场实战/","title":"C语言关于变量与表达式"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>C语言关于变量与表达式 | KItide</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">KItide</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#dvwa%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA"><span class="nav-number">1.</span> <span class="nav-text">dvwa靶场搭建</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B8%97%E9%80%8F%E6%B5%81%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">渗透流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="nav-number">2.1.</span> <span class="nav-text">信息收集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ip%E8%8E%B7%E5%8F%96"><span class="nav-number">2.1.1.</span> <span class="nav-text">ip获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="nav-number">2.1.2.</span> <span class="nav-text">目录信息收集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E6%89%AB%E6%8F%8F"><span class="nav-number">2.1.3.</span> <span class="nav-text">漏洞扫描</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2%E7%AE%80%E5%8D%95%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4"><span class="nav-number">2.2.</span> <span class="nav-text">登录页面简单密码爆破</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E8%AF%B7%E6%B1%82"><span class="nav-number">2.2.1.</span> <span class="nav-text">获取请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E6%94%BB%E5%87%BB%E5%8F%82%E6%95%B0"><span class="nav-number">2.2.2.</span> <span class="nav-text">设置攻击参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E7%BB%93%E6%9E%9C"><span class="nav-number">2.2.3.</span> <span class="nav-text">分析结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#csrf-token%E8%8E%B7%E5%8F%96"><span class="nav-number">2.3.</span> <span class="nav-text">csrf- token获取</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%BA%AF%E6%BA%90"><span class="nav-number">3.</span> <span class="nav-text">溯源</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E7%89%B9%E7%82%B9%E5%88%86%E6%9E%90"><span class="nav-number">3.1.</span> <span class="nav-text">日志特点分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%E6%89%AB%E6%8F%8F%E7%A1%AE%E8%AE%A4"><span class="nav-number">3.1.1.</span> <span class="nav-text">目录扫描确认</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E6%89%AB%E6%8F%8F%E7%A1%AE%E8%AE%A4"><span class="nav-number">3.1.2.</span> <span class="nav-text">漏洞扫描确认</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4%E7%A1%AE%E8%AE%A4"><span class="nav-number">3.1.3.</span> <span class="nav-text">密码爆破确认</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA"><span class="nav-number">4.</span> <span class="nav-text">安全加固</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#token%E7%AD%96%E7%95%A5"><span class="nav-number">4.1.</span> <span class="nav-text">token策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A2%9E%E5%8A%A0%E8%BD%AC%E4%B9%89%E9%98%B2%E6%AD%A2sql%E6%B3%A8%E5%85%A5"><span class="nav-number">4.2.</span> <span class="nav-text">增加转义防止sql注入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A2%9E%E5%8A%A0%E8%BE%93%E5%85%A5%E5%A4%B1%E8%B4%A5%E9%94%81%E5%AE%9A%E7%AD%96%E7%95%A5"><span class="nav-number">4.3.</span> <span class="nav-text">增加输入失败锁定策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E7%A0%81"><span class="nav-number">4.4.</span> <span class="nav-text">验证码</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="KItide"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">KItide</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/KItide" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;KItide" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://example.com/" title="https:&#x2F;&#x2F;example.com">Title</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/06/dvwa%E9%9D%B6%E5%9C%BA%E5%AE%9E%E6%88%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KItide">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KItide">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="C语言关于变量与表达式 | KItide">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C语言关于变量与表达式
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-03-06 19:49:52 / 修改时间：20:53:17" itemprop="dateCreated datePublished" datetime="2025-03-06T19:49:52+08:00">2025-03-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="dvwa靶场搭建"><a href="#dvwa靶场搭建" class="headerlink" title="dvwa靶场搭建"></a>dvwa靶场搭建</h1><p>1.下载配置phpstudy,启动apache和mysql数据库</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/6da2fd5419c24bc7a4c3d5021f48aecb.png" alt="image.png"></p>
+<p>2.官网下载靶机包，解压修改文件名称为DVWA后放入phpstudy的WWW目录下</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/42b3376875694fb49b772dd2af1478e5.png" alt="image.png"></p>
+<p>3.phpstudy中创建网站 在域名中输入你修改的靶场文件名（DVWA)即可</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/3d7b837862574d5abfb007e6a985d50a.png" alt="image.png"></p>
+<p>4.修改配置文件，点开…WWW\DVWA\config目录下的config.inc.php</p>
+<p>修改IP（本机127.0.0.1)、库名（默认dvwa不用改）、用户名(默认root)、密码(默认root）、端口</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/089c32bc573c455cae5eac1628ccee4c.png" alt="image.png"></p>
+<p>注：user和password来自phpstudy中数据库页面</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/f9941983b96b44978a9279d7270f7545.png" alt="image.png"></p>
+<p>5.在浏览器中输入localhost&#x2F;dvwa&#x2F;即可访问</p>
+<p>注：初次访问有登录界面 输入用户名：admin 密码：password即可</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/ae000b9e679d4c38b1de51fafaa93791.png" alt="image.png"></p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/b527fc232d08454b97f9c023ecc4cb95.png" alt="image.png"></p>
+<h1 id="渗透流程"><a href="#渗透流程" class="headerlink" title="渗透流程"></a>渗透流程</h1><h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><h3 id="ip获取"><a href="#ip获取" class="headerlink" title="ip获取"></a>ip获取</h3><p>1.nslookup 命令解析域名，获得服务器和地址（判断是否有CDN）</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/eb9a0e21e3224d6bb23f0e53419919b4.png" alt="image.png"></p>
+<p>（旁站、c段主机、子域名、端口暂略去）</p>
+<h3 id="目录信息收集"><a href="#目录信息收集" class="headerlink" title="目录信息收集"></a>目录信息收集</h3><p>dirsearch 扫描以期收获敏感目录文件、源码 等</p>
+<p>dirsearch字典如下（可自我收集使用其他字典）</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/16a9994bc72d4ee38e980bd62200aa75.png" alt="image.png"></p>
+<p>python dirsearch.py –help 获取使用指南，按说明进行命令行书写</p>
+<p>python dirsearch.py –url  localhost&#x2F;dvwa&#x2F; -e* -i 200,201,201-300 （限定只记录状态码为200-300的目录）</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/e1f03c60b08a4f6eb2f5197ad07f79a2.png" alt="image.png"></p>
+<p>扫描结果在dirsearh 目录下的report中查看</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/85007dc82b1441b1a428396a93463818.png" alt="image.png"></p>
+<h3 id="漏洞扫描"><a href="#漏洞扫描" class="headerlink" title="漏洞扫描"></a>漏洞扫描</h3><p>1.启动bp点击dashboard-new scan，选择扫描类型（crwl and audit,爬取并审计）</p>
+<p>选择目标网址（靶场网址 ）注意！不可扫描其他正常网址，否则属于非法渗透，有风险。</p>
+<p>选择协议类型（默认http,可自定义）</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/22d1d43ff07f4c0db0b3e2f071420cfc.png" alt="image.png"></p>
+<p>2.点击第二个扫描设置选项</p>
+<p>点击New-crwaling</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/7d8c13a3165d41b2aeb1441f06ab95f4.png" alt="image.png"></p>
+<p>设置任务名称（dvwa crl),将下面选项依次展开确认（可不更改）后点击save</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/b881d56f145b44208efd29987398d44c.png" alt="image.png"></p>
+<p>点击 new - audit,同理，设置名称，展开确认后save</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/96f332a6eb2343bc9ad54d5de5cf9538.png" alt="image.png"></p>
+<p>点击ok，开始扫描</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/3b90638e617a46e0958a40e68cff9454.png" alt="image.png"></p>
+<p>如图，可在dashboard板右侧issue activity框或任务进程右下角的viewdetails中查看漏洞详细情况</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/ce1cc371ee7645c3a7fb0079f58e8c14.png" alt="image.png"></p>
+<p>选中全部条目后右键选择report selected issues生成扫描报告</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/7ac25b2390fd4c3098937d7cafdfcc05.png" alt="image.png"></p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/2b9b4743a13a44fdba9a3bbba2ceb746.png" alt="image.png"></p>
+<p>一直next到选择文件</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/1b802d432ac14a9fbb550f1766959e48.png" alt="image.png"></p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/ba0a453688ee43ed855f4b78da3e7608.png" alt="image.png"></p>
+<p>点开保存路径，查看漏洞详细信息</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/c63b91bc6e784ef983ec7581f17beb7a.png" alt="image.png"></p>
+<h2 id="登录页面简单密码爆破"><a href="#登录页面简单密码爆破" class="headerlink" title="登录页面简单密码爆破"></a>登录页面简单密码爆破</h2><h3 id="获取请求"><a href="#获取请求" class="headerlink" title="获取请求"></a>获取请求</h3><p>用burpsuite内置浏览器（用其他浏览器需设置bp代理）打开dvwa，设置漏洞等级low后进入brute force页面</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/470dbe4b524d49ad8e01a1887ee0d4e5.png" alt="image.png"></p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/693aff2b50434f3e95a1c27d3a05049c.png" alt="image.png"></p>
+<p>开启burpsuite拦截功能，如图</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/aab9c5862af14bc1908e23b167de6e0b.png" alt="image.png"></p>
+<p>返回浏览器，乱输一个密码后点击login,bp拦截到请求后自动弹出页面</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/19a51dc582824b249c9f835b94f32ef9.png" alt="image.png"></p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/05fb45549c4b41aba9437a28eac99818.png" alt="image.png"></p>
+<p>右键送至intruder模块</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/c886af611e524125b0867ba402daa830.png" alt="image.png"></p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/ec8efa381bc8431ca1e4bdd69db0cae2.png" alt="image.png"></p>
+<h3 id="设置攻击参数"><a href="#设置攻击参数" class="headerlink" title="设置攻击参数"></a>设置攻击参数</h3><p>1.设置攻击密码内容为攻击字段（默认已知用户名admin）</p>
+<p>首先点击clear$，关闭intruder模块的绿色分节符，然后设置password为分节符（点击Add)</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/a121567a23284152a93eba1da4abf9ae.png" alt="image.png"></p>
+<p>2..选择攻击模式sniper</p>
+<p>Sniper :狙击手 精准打击，适合单参数</p>
+<p>3.设置pyloads</p>
+<p>选择payloadtype为simplelist (对应sniper)</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/1d3a50d3d2754e0cae6add6c941252d0.png" alt="image.png"></p>
+<p>在payloadoptions中选择bp自带字典（点击add from list),选择合适字典</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/07fb870c03f54789ab34666c8fcef84c.png" alt="image.png"></p>
+<p>点击starttack开始爆破</p>
+<h3 id="分析结果"><a href="#分析结果" class="headerlink" title="分析结果"></a>分析结果</h3><p>观察法：成功的那个状态码或长度一定不一样</p>
+<p>点击头部进行排序</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/e8da0d170439411686a7bd033c91a6c7.png" alt="image.png"></p>
+<p>第一条 长度明显不同</p>
+<p>双击，在response中发现 “Welcome to the password protected area admin”，确认爆破成功</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/ba795ba1ae0f405d97cfc004e9f729cb.png" alt="image.png"></p>
+<p>grep标记法</p>
+<p>options选中grep-match<img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/c9b5b8801406400f9e979bf47bf82b81.png" alt="image.png"></p>
+<p><strong>设置“welcome to the password……”为标记值</strong></p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/91f8e931e7614c27be988924d6a469e5.png" alt="image.png"></p>
+<p>结果如图</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/901623c621024a219152411e141c9f70.png" alt="image.png"></p>
+<h2 id="csrf-token获取"><a href="#csrf-token获取" class="headerlink" title="csrf- token获取"></a>csrf- token获取</h2><p>将dvwa靶场漏洞等级调整为 high后查看登录页面源代码（view resource)</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/148b7ca9af8a4947a189ea3d6ecb8d19.png" alt="image.png"></p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/c65d76323f984d5192ae2214277ed735.png" alt="image.png"></p>
+<p>发现此处相对于低等级进行了安全加固，设置了anti-csrf策略</p>
+<p>Anti-CSRF token:每一次访问，都需要一个新的Token,一次使用，用完销毁，防止第三方网站冒充身份进行攻击。</p>
+<p>获取这一次的响应来进行 下一次访问</p>
+<p>依次轮流的访问</p>
+<p>1.流程同上，打开bp代理,乱输入密码，点击登录，获取请求，发送intruder,为密码和token字段设置分节符</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/71936b7d173b48039e94a8be297d26fe.png" alt="image.png"></p>
+<p>设置attack type为pitchfork（草叉 多个payload和攻击字段）</p>
+<p>payload1（password）为simple list</p>
+<p>payload2(token字段)为recrusvive （递归查找，拿到token)</p>
+<p>intruder-options里找到grep-extract,点击add,点击feth获取一个响应，在响应包中找到token字段双击选中</p>
+<p>上方自动生成匹配规则</p>
+<p>复制该字段（不复制就会被销毁）,后点击ok，将字段粘贴到initial…中</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/f969041d0f604422b3da66faec331912.png" alt="image.png"></p>
+<p>89a617d5a61974992a9519bd0a9a28bf</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/b71d8f85c6bb478fb2a8f66cf80a3743.png" alt="image.png"></p>
+<p>设置线程池为单线程</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/be0d8cfd046842e78da69cb2ba940c66.png" alt="image.png"></p>
+<p>start attack</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/7930cbbfe1dc4202a45b68d56ffec0ab.png" alt="image.png"></p>
+<p>爆破成功页面</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/bf42827446034086bdb1dc06341c58a3.png" alt="image.png"></p>
+<h1 id="溯源"><a href="#溯源" class="headerlink" title="溯源"></a>溯源</h1><h2 id="日志特点分析"><a href="#日志特点分析" class="headerlink" title="日志特点分析"></a>日志特点分析</h2><p>打开dvwa靶场搭建的根目录，在apache中找到logs</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/44979b8d0d7d43448bbc88b4f4e6ef15.png" alt="image.png"></p>
+<p>点开最新的一条</p>
+<h3 id="目录扫描确认"><a href="#目录扫描确认" class="headerlink" title="目录扫描确认"></a>目录扫描确认</h3><p>观察请求url特征及发现地址中存在大量网站没有的子域名，观察状态码多为404请求失败，确认网站被目录扫描</p>
+<p>并确认攻击时间，攻击者ip(::1映射主机ip),此处对应一开始的dirsearch目录扫描</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/b9aa226f381f4930b9fc8d1f61ebd990.png" alt="image.png"></p>
+<h3 id="漏洞扫描确认"><a href="#漏洞扫描确认" class="headerlink" title="漏洞扫描确认"></a>漏洞扫描确认</h3><p>状态码多在200-400，访问成功，多个页面分支，明显的sql语句 查询等等，基本确认在做漏洞扫描，对应bp的scan</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/ddeaa52044ee47ff9d1ce636be4e684a.png" alt="image.png"></p>
+<h3 id="密码爆破确认"><a href="#密码爆破确认" class="headerlink" title="密码爆破确认"></a>密码爆破确认</h3><p>同一登录网址的大量请求，且伴随不同的password值，明显的强制爆破攻击</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/fb2daee5d45b42b0bd5f6e7222aa9679.png" alt="image.png"></p>
+<h1 id="安全加固"><a href="#安全加固" class="headerlink" title="安全加固"></a>安全加固</h1><h2 id="token策略"><a href="#token策略" class="headerlink" title="token策略"></a>token策略</h2><p>作为计算机术语时，token是“令牌”的意思。Token是服务端生成的一串字符串，以作客户端进行请求的一个令牌，当第一次登录后，服务器生成一个Token便将此Token返回给客户端，以后客户端只需带上这个Token前来请求数据即可，无需再次带上用户名和密码.</p>
+<p>相对于完全裸露的密码登录方式，token策略在一定程度上抵御了csrf(跨站请求伪造）攻击，避免第三方网站利用被攻击网站生效的cookie，直接对服务器接口发起请求。</p>
+<p>同时，设置token复杂的生成规则可延缓两次请求的间隔时间，从而大大提升密码爆破的难度，降低了其效率。</p>
+<p>如图对比：</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/87e6cdee819c4f85b292eb4eaf93161e.png" alt="image.png"></p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/35f66c011d544c5786b8a91fed7a407c.png" alt="image.png"></p>
+<h2 id="增加转义防止sql注入"><a href="#增加转义防止sql注入" class="headerlink" title="增加转义防止sql注入"></a>增加转义防止sql注入</h2><p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/2743e06b0d674b60bd8156fce99f3735.png" alt="image.png"></p>
+<h2 id="增加输入失败锁定策略"><a href="#增加输入失败锁定策略" class="headerlink" title="增加输入失败锁定策略"></a>增加输入失败锁定策略</h2><p>15min后才能继续破解</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$total_failed_login = 3;</span><br><span class="line">    $lockout_time       = 15;</span><br><span class="line">    $account_locked     = false;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/41ac06c6a89f4a90ab3272a563a44e39.png" alt="image.png"></p>
+<h2 id="验证码"><a href="#验证码" class="headerlink" title="验证码"></a>验证码</h2><p>1.通过f12网页审查确认页面所在源码文件</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/8b72434eefa14cd099c70ebe8cf302b0.png" alt="image.png"></p>
+<p>2.打开源码进行验证码板块构造，通过学习php验证码实现对源码进行增添</p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/2da4dee33a404f06b504e8b1f5c10f35.png" alt="image.png"></p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/f8d5a36855994f098c031a4735021cc5.png" alt="image.png"></p>
+<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/3aa6689d47444ddfae71ddeb202c63be.png" alt="image.png"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%9D%B6%E5%9C%BA/" rel="tag"># 靶场</a>
+              <a href="/tags/ctf/" rel="tag"># ctf</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/03/06/C%E8%AF%AD%E8%A8%80%E6%8E%A7%E5%88%B6%E6%B5%81%E7%A8%8B%E8%AF%AD%E5%8F%A5%E5%AD%A6%E4%B9%A0%E2%80%94%E5%8A%A0%E5%BF%AB%E8%BF%9B%E5%BA%A6/" rel="prev" title="C语言控制流语句学习">
+                  <i class="fa fa-angle-left"></i> C语言控制流语句学习
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/03/06/IDEA%E7%9A%84%E5%AE%89%E8%A3%85/" rel="next" title="IDEA的安装">
+                  IDEA的安装 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">KItide</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
