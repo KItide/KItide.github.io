@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="文献阅读笔记：Attention Is All You Need文献标题：Attention Is All You Need作者：Jakob Uszkoreit、Niki Parmar、Noam Shazeer等发表期刊&#x2F;会议：31st Conference on Neural Information Processing Systems (NIPS 2017)发表时间：2017年 一、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Attention Is All You Need阅读笔记">
+<meta property="og:url" content="http://example.com/2025/02/14/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="KItide">
+<meta property="og:description" content="文献阅读笔记：Attention Is All You Need文献标题：Attention Is All You Need作者：Jakob Uszkoreit、Niki Parmar、Noam Shazeer等发表期刊&#x2F;会议：31st Conference on Neural Information Processing Systems (NIPS 2017)发表时间：2017年 一、">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="g:\%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0\image_bed\image-20250312141458301.png">
+<meta property="article:published_time" content="2025-02-14T04:00:00.000Z">
+<meta property="article:modified_time" content="2025-02-15T06:30:00.000Z">
+<meta property="article:author" content="KItide">
+<meta property="article:tag" content="LLM">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="g:\%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0\image_bed\image-20250312141458301.png">
+
+
+<link rel="canonical" href="http://example.com/2025/02/14/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/02/14/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/","path":"2025/02/14/文献阅读笔记/","title":"Attention Is All You Need阅读笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Attention Is All You Need阅读笔记 | KItide</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">KItide</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%EF%BC%9AAttention-Is-All-You-Need"><span class="nav-number">1.</span> <span class="nav-text">文献阅读笔记：Attention Is All You Need</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%A0%94%E7%A9%B6%E8%83%8C%E6%99%AF%E4%B8%8E%E7%9B%AE%E7%9A%84"><span class="nav-number">1.1.</span> <span class="nav-text">一、研究背景与目的</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E7%A0%94%E7%A9%B6%E8%83%8C%E6%99%AF"><span class="nav-number">1.1.1.</span> <span class="nav-text">（一）研究背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E7%A0%94%E7%A9%B6%E7%9B%AE%E7%9A%84"><span class="nav-number">1.1.2.</span> <span class="nav-text">（二）研究目的</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E7%A0%94%E7%A9%B6%E6%96%B9%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">二、研究方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9"><span class="nav-number">1.3.</span> <span class="nav-text">三、主要内容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84"><span class="nav-number">1.3.1.</span> <span class="nav-text">（一）模型架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8A%BF%E5%88%86%E6%9E%90"><span class="nav-number">1.3.2.</span> <span class="nav-text">（二）模型优势分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%B8%89%EF%BC%89%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B"><span class="nav-number">1.3.3.</span> <span class="nav-text">（三）训练过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E5%9B%9B%EF%BC%89%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="nav-number">1.3.4.</span> <span class="nav-text">（四）实验结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E7%A0%94%E7%A9%B6%E7%BB%93%E8%AE%BA"><span class="nav-number">1.4.</span> <span class="nav-text">四、研究结论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%96%87%E7%8C%AE%E8%AF%84%E4%BB%B7"><span class="nav-number">1.5.</span> <span class="nav-text">五、文献评价</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E4%BC%98%E7%82%B9"><span class="nav-number">1.5.1.</span> <span class="nav-text">（一）优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E4%B8%8D%E8%B6%B3"><span class="nav-number">1.5.2.</span> <span class="nav-text">（二）不足</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E5%AF%B9%E8%87%AA%E5%B7%B1%E7%A0%94%E7%A9%B6%E7%9A%84%E5%90%AF%E5%8F%91"><span class="nav-number">1.6.</span> <span class="nav-text">六、对自己研究的启发</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="KItide"
+      src="/images/icon.jpg">
+  <p class="site-author-name" itemprop="name">KItide</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/KItide" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;KItide" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://example.com/" title="https:&#x2F;&#x2F;example.com">Title</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/02/14/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon.jpg">
+      <meta itemprop="name" content="KItide">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KItide">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Attention Is All You Need阅读笔记 | KItide">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Attention Is All You Need阅读笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-02-14 12:00:00" itemprop="dateCreated datePublished" datetime="2025-02-14T12:00:00+08:00">2025-02-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-15 14:30:00" itemprop="dateModified" datetime="2025-02-15T14:30:00+08:00">2025-02-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">文献阅读</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="文献阅读笔记：Attention-Is-All-You-Need"><a href="#文献阅读笔记：Attention-Is-All-You-Need" class="headerlink" title="文献阅读笔记：Attention Is All You Need"></a>文献阅读笔记：Attention Is All You Need</h1><p><strong>文献标题</strong>：Attention Is All You Need<br><strong>作者</strong>：Jakob Uszkoreit、Niki Parmar、Noam Shazeer等<br><strong>发表期刊&#x2F;会议</strong>：31st Conference on Neural Information Processing Systems (NIPS 2017)<br><strong>发表时间</strong>：2017年</p>
+<h2 id="一、研究背景与目的"><a href="#一、研究背景与目的" class="headerlink" title="一、研究背景与目的"></a>一、研究背景与目的</h2><h3 id="（一）研究背景"><a href="#（一）研究背景" class="headerlink" title="（一）研究背景"></a>（一）研究背景</h3><p>在序列建模和转换任务，如语言建模、机器翻译中，循环神经网络（RNN）及其变体（LSTM、GRU）是主流方法。但RNN顺序计算的特性使其难以并行化，处理长序列时受内存限制，计算效率低。注意力机制虽已广泛应用于序列模型，但多与RNN结合，未能充分发挥优势。</p>
+<h3 id="（二）研究目的"><a href="#（二）研究目的" class="headerlink" title="（二）研究目的"></a>（二）研究目的</h3><p>提出一种全新的网络架构Transformer，摒弃循环和卷积，完全基于注意力机制构建，旨在提升模型并行化能力，提高训练效率，同时在机器翻译等任务中取得更优的效果。</p>
+<h2 id="二、研究方法"><a href="#二、研究方法" class="headerlink" title="二、研究方法"></a>二、研究方法</h2><p>采用对比实验的方法，将Transformer模型与基于循环或卷积的传统模型进行对比。在WMT 2014英德和英法机器翻译任务上进行训练和测试，通过比较BLEU得分、训练时间、计算复杂度等指标，评估Transformer模型的性能。</p>
+<h2 id="三、主要内容"><a href="#三、主要内容" class="headerlink" title="三、主要内容"></a>三、主要内容</h2><h3 id="（一）模型架构"><a href="#（一）模型架构" class="headerlink" title="（一）模型架构"></a>（一）模型架构</h3><p><img src="G:\博客文章\image_bed\image-20250312141458301.png" alt="image-20250312141458301"></p>
+<ol>
+<li><strong>编码器和解码器堆叠</strong>：编码器由6个相同层组成，每层包含多头自注意力机制和位置全连接前馈网络，使用残差连接和层归一化。解码器结构类似，额外增加了对编码器输出的多头注意力子层，并修改自注意力子层以防止信息向左流动，确保模型的自回归特性。</li>
+<li><strong>注意力机制</strong>：缩放点积注意力通过对查询和键的点积结果进行缩放，避免大维度时梯度消失问题。多头注意力将查询、键和值投影多次后并行计算注意力，使模型能关注不同子空间信息。</li>
+<li><strong>位置前馈网络</strong>：编码器和解码器的每层都包含位置前馈网络，对每个位置分别进行相同的线性变换和ReLU激活操作。</li>
+<li><strong>嵌入和Softmax</strong>：使用学习嵌入将输入和输出令牌转换为向量，在模型中共享嵌入层和预Softmax线性变换的权重矩阵。</li>
+<li><strong>位置编码</strong>：采用正弦和余弦函数作为位置编码，为模型提供序列中令牌的位置信息，使其能利用序列顺序。</li>
+</ol>
+<h3 id="（二）模型优势分析"><a href="#（二）模型优势分析" class="headerlink" title="（二）模型优势分析"></a>（二）模型优势分析</h3><p>与循环和卷积层相比，自注意力层在计算复杂度、并行化能力和学习长距离依赖方面具有优势。当序列长度小于表示维度时，自注意力层计算速度更快；其并行化程度高，能缩短长距离依赖的路径长度，有助于学习长距离依赖关系，且模型可能更具可解释性。</p>
+<h3 id="（三）训练过程"><a href="#（三）训练过程" class="headerlink" title="（三）训练过程"></a>（三）训练过程</h3><p>在WMT 2014英德和英法数据集上进行训练，按序列长度近似分批。使用8个NVIDIA P100 GPU，采用Adam优化器，学习率随训练过程变化。训练中运用残差随机失活和标签平滑等正则化技术，防止模型过拟合。</p>
+<h3 id="（四）实验结果"><a href="#（四）实验结果" class="headerlink" title="（四）实验结果"></a>（四）实验结果</h3><ol>
+<li><strong>机器翻译任务</strong>：在WMT 2014英德翻译任务中，Transformer大模型BLEU得分达28.4，超越之前所有模型；在英法翻译任务中，大模型BLEU得分41.0，训练成本不到之前最优模型的1&#x2F;4。</li>
+<li><strong>模型变体实验</strong>：通过对模型组件进行不同设置的实验，分析了注意力头数量、注意力键值维度、模型大小、随机失活率等因素对模型性能的影响。</li>
+</ol>
+<h2 id="四、研究结论"><a href="#四、研究结论" class="headerlink" title="四、研究结论"></a>四、研究结论</h2><p>Transformer是首个完全基于注意力的序列转换模型，在翻译任务上训练速度比基于循环或卷积的模型快得多，且取得了新的最优结果。未来研究方向包括将Transformer应用于更多任务，探索局部受限注意力机制处理图像、音频和视频等大输入输出，以及减少生成过程的顺序性。 </p>
+<h2 id="五、文献评价"><a href="#五、文献评价" class="headerlink" title="五、文献评价"></a>五、文献评价</h2><h3 id="（一）优点"><a href="#（一）优点" class="headerlink" title="（一）优点"></a>（一）优点</h3><ol>
+<li><strong>创新性强</strong>：提出全新的架构，打破传统依赖循环和卷积的模式，为序列建模带来新的思路和方法。</li>
+<li><strong>性能卓越</strong>：在机器翻译任务中表现出色，大幅提升了翻译质量，同时训练效率显著提高。</li>
+<li><strong>实验充分</strong>：通过大量实验对比和模型变体分析，深入研究了模型各组件的作用和影响，结论可靠。</li>
+</ol>
+<h3 id="（二）不足"><a href="#（二）不足" class="headerlink" title="（二）不足"></a>（二）不足</h3><ol>
+<li><strong>计算资源需求大</strong>：训练Transformer模型需要较多的计算资源，如多个高性能GPU，这在一定程度上限制了其在资源受限环境中的应用。</li>
+<li><strong>理论分析有待深入</strong>：虽然模型在实践中表现优异，但对模型的理论分析相对较少，例如注意力机制如何影响模型的泛化能力等方面还需进一步研究。</li>
+</ol>
+<h2 id="六、对自己研究的启发"><a href="#六、对自己研究的启发" class="headerlink" title="六、对自己研究的启发"></a>六、对自己研究的启发</h2><ol>
+<li><strong>研究方法上</strong>：在处理序列相关问题时，可借鉴Transformer的注意力机制，尝试替代或改进传统的循环或卷积结构，提升模型性能和效率。</li>
+<li><strong>模型设计上</strong>：多头注意力机制和位置编码等设计巧妙，在设计新模型时，可考虑引入类似机制，增强模型对复杂信息的处理和对序列顺序的捕捉能力。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/LLM/" rel="tag"># LLM</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/11/07/%E5%93%88%E5%A3%AB%E5%A5%87%E9%A9%BE%E5%88%B0%E9%98%9F%E7%9A%84wp/" rel="prev" title="校园ctf比赛部分题解">
+                  <i class="fa fa-angle-left"></i> 校园ctf比赛部分题解
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">KItide</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

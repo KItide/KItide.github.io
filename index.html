@@ -120,18 +120,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -165,6 +165,122 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/02/14/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon.jpg">
+      <meta itemprop="name" content="KItide">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KItide">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | KItide">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/02/14/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Attention Is All You Need阅读笔记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-02-14 12:00:00" itemprop="dateCreated datePublished" datetime="2025-02-14T12:00:00+08:00">2025-02-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-15 14:30:00" itemprop="dateModified" datetime="2025-02-15T14:30:00+08:00">2025-02-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">文献阅读</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="文献阅读笔记：Attention-Is-All-You-Need"><a href="#文献阅读笔记：Attention-Is-All-You-Need" class="headerlink" title="文献阅读笔记：Attention Is All You Need"></a>文献阅读笔记：Attention Is All You Need</h1><p><strong>文献标题</strong>：Attention Is All You Need<br><strong>作者</strong>：Jakob Uszkoreit、Niki Parmar、Noam Shazeer等<br><strong>发表期刊&#x2F;会议</strong>：31st Conference on Neural Information Processing Systems (NIPS 2017)<br><strong>发表时间</strong>：2017年</p>
+<h2 id="一、研究背景与目的"><a href="#一、研究背景与目的" class="headerlink" title="一、研究背景与目的"></a>一、研究背景与目的</h2><h3 id="（一）研究背景"><a href="#（一）研究背景" class="headerlink" title="（一）研究背景"></a>（一）研究背景</h3><p>在序列建模和转换任务，如语言建模、机器翻译中，循环神经网络（RNN）及其变体（LSTM、GRU）是主流方法。但RNN顺序计算的特性使其难以并行化，处理长序列时受内存限制，计算效率低。注意力机制虽已广泛应用于序列模型，但多与RNN结合，未能充分发挥优势。</p>
+<h3 id="（二）研究目的"><a href="#（二）研究目的" class="headerlink" title="（二）研究目的"></a>（二）研究目的</h3><p>提出一种全新的网络架构Transformer，摒弃循环和卷积，完全基于注意力机制构建，旨在提升模型并行化能力，提高训练效率，同时在机器翻译等任务中取得更优的效果。</p>
+<h2 id="二、研究方法"><a href="#二、研究方法" class="headerlink" title="二、研究方法"></a>二、研究方法</h2><p>采用对比实验的方法，将Transformer模型与基于循环或卷积的传统模型进行对比。在WMT 2014英德和英法机器翻译任务上进行训练和测试，通过比较BLEU得分、训练时间、计算复杂度等指标，评估Transformer模型的性能。</p>
+<h2 id="三、主要内容"><a href="#三、主要内容" class="headerlink" title="三、主要内容"></a>三、主要内容</h2><h3 id="（一）模型架构"><a href="#（一）模型架构" class="headerlink" title="（一）模型架构"></a>（一）模型架构</h3><p><img src="G:\博客文章\image_bed\image-20250312141458301.png" alt="image-20250312141458301"></p>
+<ol>
+<li><strong>编码器和解码器堆叠</strong>：编码器由6个相同层组成，每层包含多头自注意力机制和位置全连接前馈网络，使用残差连接和层归一化。解码器结构类似，额外增加了对编码器输出的多头注意力子层，并修改自注意力子层以防止信息向左流动，确保模型的自回归特性。</li>
+<li><strong>注意力机制</strong>：缩放点积注意力通过对查询和键的点积结果进行缩放，避免大维度时梯度消失问题。多头注意力将查询、键和值投影多次后并行计算注意力，使模型能关注不同子空间信息。</li>
+<li><strong>位置前馈网络</strong>：编码器和解码器的每层都包含位置前馈网络，对每个位置分别进行相同的线性变换和ReLU激活操作。</li>
+<li><strong>嵌入和Softmax</strong>：使用学习嵌入将输入和输出令牌转换为向量，在模型中共享嵌入层和预Softmax线性变换的权重矩阵。</li>
+<li><strong>位置编码</strong>：采用正弦和余弦函数作为位置编码，为模型提供序列中令牌的位置信息，使其能利用序列顺序。</li>
+</ol>
+<h3 id="（二）模型优势分析"><a href="#（二）模型优势分析" class="headerlink" title="（二）模型优势分析"></a>（二）模型优势分析</h3><p>与循环和卷积层相比，自注意力层在计算复杂度、并行化能力和学习长距离依赖方面具有优势。当序列长度小于表示维度时，自注意力层计算速度更快；其并行化程度高，能缩短长距离依赖的路径长度，有助于学习长距离依赖关系，且模型可能更具可解释性。</p>
+<h3 id="（三）训练过程"><a href="#（三）训练过程" class="headerlink" title="（三）训练过程"></a>（三）训练过程</h3><p>在WMT 2014英德和英法数据集上进行训练，按序列长度近似分批。使用8个NVIDIA P100 GPU，采用Adam优化器，学习率随训练过程变化。训练中运用残差随机失活和标签平滑等正则化技术，防止模型过拟合。</p>
+<h3 id="（四）实验结果"><a href="#（四）实验结果" class="headerlink" title="（四）实验结果"></a>（四）实验结果</h3><ol>
+<li><strong>机器翻译任务</strong>：在WMT 2014英德翻译任务中，Transformer大模型BLEU得分达28.4，超越之前所有模型；在英法翻译任务中，大模型BLEU得分41.0，训练成本不到之前最优模型的1&#x2F;4。</li>
+<li><strong>模型变体实验</strong>：通过对模型组件进行不同设置的实验，分析了注意力头数量、注意力键值维度、模型大小、随机失活率等因素对模型性能的影响。</li>
+</ol>
+<h2 id="四、研究结论"><a href="#四、研究结论" class="headerlink" title="四、研究结论"></a>四、研究结论</h2><p>Transformer是首个完全基于注意力的序列转换模型，在翻译任务上训练速度比基于循环或卷积的模型快得多，且取得了新的最优结果。未来研究方向包括将Transformer应用于更多任务，探索局部受限注意力机制处理图像、音频和视频等大输入输出，以及减少生成过程的顺序性。 </p>
+<h2 id="五、文献评价"><a href="#五、文献评价" class="headerlink" title="五、文献评价"></a>五、文献评价</h2><h3 id="（一）优点"><a href="#（一）优点" class="headerlink" title="（一）优点"></a>（一）优点</h3><ol>
+<li><strong>创新性强</strong>：提出全新的架构，打破传统依赖循环和卷积的模式，为序列建模带来新的思路和方法。</li>
+<li><strong>性能卓越</strong>：在机器翻译任务中表现出色，大幅提升了翻译质量，同时训练效率显著提高。</li>
+<li><strong>实验充分</strong>：通过大量实验对比和模型变体分析，深入研究了模型各组件的作用和影响，结论可靠。</li>
+</ol>
+<h3 id="（二）不足"><a href="#（二）不足" class="headerlink" title="（二）不足"></a>（二）不足</h3><ol>
+<li><strong>计算资源需求大</strong>：训练Transformer模型需要较多的计算资源，如多个高性能GPU，这在一定程度上限制了其在资源受限环境中的应用。</li>
+<li><strong>理论分析有待深入</strong>：虽然模型在实践中表现优异，但对模型的理论分析相对较少，例如注意力机制如何影响模型的泛化能力等方面还需进一步研究。</li>
+</ol>
+<h2 id="六、对自己研究的启发"><a href="#六、对自己研究的启发" class="headerlink" title="六、对自己研究的启发"></a>六、对自己研究的启发</h2><ol>
+<li><strong>研究方法上</strong>：在处理序列相关问题时，可借鉴Transformer的注意力机制，尝试替代或改进传统的循环或卷积结构，提升模型性能和效率。</li>
+<li><strong>模型设计上</strong>：多头注意力机制和位置编码等设计巧妙，在设计新模型时，可考虑引入类似机制，增强模型对复杂信息的处理和对序列顺序的捕捉能力。</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -411,7 +527,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/08/07/dvwa%E9%9D%B6%E5%9C%BA%E5%AE%9E%E6%88%98/" class="post-title-link" itemprop="url">C语言关于变量与表达式</a>
+          <a href="/2023/08/07/dvwa%E9%9D%B6%E5%9C%BA%E5%AE%9E%E6%88%98/" class="post-title-link" itemprop="url">DVWA靶场实战</a>
         </h2>
 
         <div class="post-meta-container">
@@ -452,11 +568,11 @@
     
     <div class="post-body" itemprop="articleBody">
           <h1 id="dvwa靶场搭建"><a href="#dvwa靶场搭建" class="headerlink" title="dvwa靶场搭建"></a>dvwa靶场搭建</h1><p>1.下载配置phpstudy,启动apache和mysql数据库</p>
-<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/6da2fd5419c24bc7a4c3d5021f48aecb.png" alt="image.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/KItide/image_bed@main/img/6da2fd5419c24bc7a4c3d5021f48aecb.png" alt="image.png"></p>
 <p>2.官网下载靶机包，解压修改文件名称为DVWA后放入phpstudy的WWW目录下</p>
-<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/42b3376875694fb49b772dd2af1478e5.png" alt="image.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/KItide/image_bed@main/img/42b3376875694fb49b772dd2af1478e5.png" alt="image.png"></p>
 <p>3.phpstudy中创建网站 在域名中输入你修改的靶场文件名（DVWA)即可</p>
-<p><img src="https://fynotefile.oss-cn-zhangjiakou.aliyuncs.com/fynote/fyfile/38387/1696942958096/3d7b837862574d5abfb007e6a985d50a.png" alt="image.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/KItide/image_bed@main/img/3d7b837862574d5abfb007e6a985d50a.png" alt="image.png"></p>
 <p>4.修改配置文件，点开…WWW\DVWA\config目录下的config.inc.php</p>
 <p>修改IP（本机127.0.0.1)、库名（默认dvwa不用改）、用户名(默认root)、密码(默认root）、端口</p>
           <!--noindex-->
@@ -1040,117 +1156,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/05/17/2022%E5%B9%B4SRE_C%E8%AF%AD%E8%A8%80%E8%AF%BE%E7%A8%8B%E4%BD%9C%E4%B8%9A/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/07/C%E8%AF%AD%E8%A8%80%E6%8E%A7%E5%88%B6%E6%B5%81%E7%A8%8B%E8%AF%AD%E5%8F%A5%E5%AD%A6%E4%B9%A0%E2%80%94%E5%8A%A0%E5%BF%AB%E8%BF%9B%E5%BA%A6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon.jpg">
-      <meta itemprop="name" content="KItide">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KItide">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | KItide">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/06/07/C%E8%AF%AD%E8%A8%80%E6%8E%A7%E5%88%B6%E6%B5%81%E7%A8%8B%E8%AF%AD%E5%8F%A5%E5%AD%A6%E4%B9%A0%E2%80%94%E5%8A%A0%E5%BF%AB%E8%BF%9B%E5%BA%A6/" class="post-title-link" itemprop="url">C语言控制流语句学习</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-06-07 12:00:00" itemprop="dateCreated datePublished" datetime="2021-06-07T12:00:00+08:00">2021-06-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-09 14:30:00" itemprop="dateModified" datetime="2022-04-09T14:30:00+08:00">2022-04-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="分支选择控制"><a href="#分支选择控制" class="headerlink" title="分支选择控制"></a>分支选择控制</h1><h2 id="一、判断"><a href="#一、判断" class="headerlink" title="一、判断"></a>一、判断</h2><ol>
-<li><h4 id="if语句"><a href="#if语句" class="headerlink" title="if语句"></a>if语句</h4><p>一个 <strong>if 判断语句</strong> 由一个判断表达式后跟一个或多个语句组成：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (判断表达式) <span class="comment">// 表达式成立（为真）返回非0值</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 括号里的表达式成立时执行的语句···</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果需要执行的语句只有一行</span></span><br><span class="line"><span class="keyword">if</span> (判断表达式)</span><br><span class="line">    括号里的表达式成立时执行的语句;</span><br></pre></td></tr></table></figure>
-
-
-</li>
-<li><h4 id="带有else的if语句"><a href="#带有else的if语句" class="headerlink" title="带有else的if语句"></a>带有else的if语句</h4><ul>
-<li><h6 id="if···-else"><a href="#if···-else" class="headerlink" title="if··· else"></a>if··· else</h6><p>一个 if 后可跟零个或一个 else，当if后的判断表达式不成立（为假）时，直接执行else后的语句</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;不会得到执行的语句&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;一定会会得到执行的语句&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 运行结果为： 一定会会得到执行的语句</span></span><br></pre></td></tr></table></figure>
-
-<p>同理，若大括号里的代码只有一行，则大括号可以省略不写</p>
-</li>
-<li><h6 id="if···-else-if···-else"><a href="#if···-else-if···-else" class="headerlink" title="if··· else if··· else"></a>if··· else if··· else</h6><ul>
-<li>一个 if 后可跟零个或多个 else if，else if 必须在 else 之前。</li>
-<li>一旦if或者某个 else if 匹配成功，其他的 else if 或 else 将会被直接忽略跳过</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(a == <span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">    res = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>( a == <span class="number">2</span>)</span><br><span class="line">&#123;</span><br><span class="line">    res = <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>( a == <span class="number">3</span>)</span><br><span class="line">&#123;</span><br><span class="line">    res = <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;未找到匹配的条件&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 运行结果为： 3</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/06/07/C%E8%AF%AD%E8%A8%80%E6%8E%A7%E5%88%B6%E6%B5%81%E7%A8%8B%E8%AF%AD%E5%8F%A5%E5%AD%A6%E4%B9%A0%E2%80%94%E5%8A%A0%E5%BF%AB%E8%BF%9B%E5%BA%A6/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
