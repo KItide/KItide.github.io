@@ -175,119 +175,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/25/%E5%BC%97%E6%B4%9B%E4%BC%8A%E5%BE%B7%EF%BC%88Floyd%EF%BC%89%E7%AE%97%E6%B3%95%E6%B1%82%E5%9B%BE%E7%9A%84%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/icon.jpg">
-      <meta itemprop="name" content="KItide">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KItide">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | KItide">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/03/25/%E5%BC%97%E6%B4%9B%E4%BC%8A%E5%BE%B7%EF%BC%88Floyd%EF%BC%89%E7%AE%97%E6%B3%95%E6%B1%82%E5%9B%BE%E7%9A%84%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2025-03-25 19:41:16 / 修改时间：19:50:13" itemprop="dateCreated datePublished" datetime="2025-03-25T19:41:16+08:00">2025-03-25</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="弗洛伊德基本思想"><a href="#弗洛伊德基本思想" class="headerlink" title="弗洛伊德基本思想"></a>弗洛伊德基本思想</h2><p>弗洛伊德算法作为求最短路径的经典算法，其算法实现相比迪杰斯特拉等算法是非常优雅的，可读性和理解都非常好。</p>
-<h3 id="基本思想："><a href="#基本思想：" class="headerlink" title="基本思想："></a>基本思想：</h3><p>弗洛伊德算法定义了两个二维矩阵：</p>
-<blockquote>
-<p>矩阵D记录顶点间的最小路径<br>例如D[0][3]&#x3D; 10，说明顶点0 到 3 的最短路径为10；<br>矩阵P记录顶点间最小路径中的中转点<br>例如P[0][3]&#x3D; 1 说明，0 到 3的最短路径轨迹为：0 -&gt; 1 -&gt; 3。<br>它通过3重循环，k为中转点，v为起点，w为终点，循环比较D[v][w] 和 D[v][k] + D[k][w] 最小值，如果D[v][k] + D[k][w] 为更小值，则把D[v][k] + D[k][w] 覆盖保存在D[v][w]中。</p>
-</blockquote>
-<p>概念是比较难理解的，我们来看图：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/KItide/image_bed@main/img/20161126113221280" alt="IMAGE-20161126113221280"></p>
-<p><strong>第1步：</strong></p>
-<p>顶点名称和下标的对应</p>
-<table>
-<thead>
-<tr>
-<th align="center">A</th>
-<th align="center">B</th>
-<th align="center">C</th>
-<th align="center">D</th>
-<th align="center">E</th>
-<th align="center">F</th>
-<th align="center">G</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">0</td>
-<td align="center">1</td>
-<td align="center">2</td>
-<td align="center">3</td>
-<td align="center">4</td>
-<td align="center">5</td>
-<td align="center">6</td>
-</tr>
-</tbody></table>
-<p><strong>第2步：</strong><br>以A为中间点，原D矩阵中，D$[B][G]$的值为INF，即不存在B-&gt;G的最小路径，但是通过A为中间点，D$[B][A]$ + D$[A][G]$ &#x3D; 12 + 14 &#x3D; 26 小于 D$[B][G]$ &#x3D; INF， 所以D$[B][A]$ + D$[A][G] $为 B -&gt; G的最小值，因此覆盖D$[B][G] $为 26。</p>
-<p><strong>第3步：</strong><br>以B为中间点，第2步后的D矩阵中，D$[A][C]$的值为INF， 但是通过B，D$[A][B]$ + D$[B][C] $&#x3D; 12 + 10 &#x3D; 22 小于 D$[A][C] $&#x3D; INF，所以D$[A][B] $+ D$[B][C]$ 为 A-&gt;C的最小路径，覆盖D$[A][C]$的值为22， 以此类推。</p>
-<p><strong>第4步….</strong></p>
-<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a><strong>代码实现</strong></h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">struct_graph</span>&#123;</span></span><br><span class="line">    <span class="type">char</span> vexs[MAXN];</span><br><span class="line">    <span class="type">int</span> vexnum;<span class="comment">//顶点数 </span></span><br><span class="line">    <span class="type">int</span> edgnum;<span class="comment">//边数 </span></span><br><span class="line">    <span class="type">int</span> matirx[MAXN][MAXN];<span class="comment">//邻接矩阵 </span></span><br><span class="line">&#125; Graph;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这里是弗洛伊德算法的核心部分 </span></span><br><span class="line">    <span class="comment">//k为中间点 </span></span><br><span class="line">    <span class="keyword">for</span>(k = <span class="number">0</span>; k &lt; G.vexnum; k++)&#123;</span><br><span class="line">        <span class="comment">//v为起点 </span></span><br><span class="line">        <span class="keyword">for</span>(v = <span class="number">0</span> ; v &lt; G.vexnum; v++)&#123;</span><br><span class="line">            <span class="comment">//w为终点 </span></span><br><span class="line">            <span class="keyword">for</span>(w =<span class="number">0</span>; w &lt; G.vexnum; w++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(D[v][w] &gt; (D[v][k] + D[k][w]))&#123;</span><br><span class="line">                    D[v][w] = D[v][k] + D[k][w];<span class="comment">//更新最小路径 </span></span><br><span class="line">                    P[v][w] = P[v][k];<span class="comment">//更新最小路径中间顶点 </span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="求A-到-D的最短路径"><a href="#求A-到-D的最短路径" class="headerlink" title="求A 到 D的最短路径"></a><strong>求A 到 D的最短路径</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">v = 0;</span><br><span class="line">w = 3;</span><br><span class="line">//求 0 到 3的最小路径</span><br><span class="line">printf(&quot;\n%d -&gt; %d 的最小路径为：%d\n&quot;, v, w, D[v][w]);</span><br><span class="line">k = P[v][w];</span><br><span class="line">printf(&quot;path: %d&quot;, v);//打印起点</span><br><span class="line">while(k != w)&#123;</span><br><span class="line">    printf(&quot;-&gt; %d&quot;, k);//打印中间点</span><br><span class="line">    k = P[k][w]; </span><br><span class="line">&#125;</span><br><span class="line">printf(&quot;-&gt; %d\n&quot;, w);</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a><strong>完整代码</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line"></span><br><span class="line">#define MAXN 10 </span><br><span class="line">#define INF = 1000</span><br><span class="line"></span><br><span class="line">typedef struct struct_graph&#123;</span><br><span class="line">    char vexs[MAXN];</span><br><span class="line">    int vexnum;//顶点数 </span><br><span class="line">    int edgnum;//边数 </span><br><span class="line">    int matirx[MAXN][MAXN];//邻接矩阵 </span><br><span class="line">&#125; Graph;</span><br><span class="line"></span><br><span class="line">int pathmatirx[MAXN][MAXN];//记录对应点的最小路径的前驱点，例如p(1,3) = 2 说明顶点1到顶点3的最小路径要经过2 </span><br><span class="line">int shortPath[MAXN][MAXN];//记录顶点间的最小路径值</span><br><span class="line"></span><br><span class="line">void short_path_floyd(Graph G, int P[MAXN][MAXN], int D[MAXN][MAXN])&#123;</span><br><span class="line">    int v, w, k;</span><br><span class="line">    //初始化floyd算法的两个矩阵 </span><br><span class="line">    for(v = 0; v &lt; G.vexnum; v++)&#123;</span><br><span class="line">        for(w = 0; w &lt; G.vexnum; w++)&#123;</span><br><span class="line">            D[v][w] = G.matirx[v][w];</span><br><span class="line">            P[v][w] = w;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //这里是弗洛伊德算法的核心部分 </span><br><span class="line">    //k为中间点 </span><br><span class="line">    for(k = 0; k &lt; G.vexnum; k++)&#123;</span><br><span class="line">        //v为起点 </span><br><span class="line">        for(v = 0 ; v &lt; G.vexnum; v++)&#123;</span><br><span class="line">            //w为终点 </span><br><span class="line">            for(w =0; w &lt; G.vexnum; w++)&#123;</span><br><span class="line">                if(D[v][w] &gt; (D[v][k] + D[k][w]))&#123;</span><br><span class="line">                    D[v][w] = D[v][k] + D[k][w];//更新最小路径 </span><br><span class="line">                    P[v][w] = P[v][k];//更新最小路径中间顶点 </span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    printf(&quot;\n初始化的D矩阵\n&quot;);</span><br><span class="line">    for(v = 0; v &lt; G.vexnum; v++)&#123;</span><br><span class="line">        for(w = 0; w &lt; G.vexnum; w++)&#123;</span><br><span class="line">            printf(&quot;%d &quot;, D[v][w]);</span><br><span class="line">        &#125;</span><br><span class="line">        printf(&quot;\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    printf(&quot;\n初始化的P矩阵\n&quot;);</span><br><span class="line">    for(v = 0; v &lt; G.vexnum; v++)&#123;</span><br><span class="line">        for(w = 0; w &lt; G.vexnum; w++)&#123;</span><br><span class="line">            printf(&quot;%d&quot;, P[v][w]);</span><br><span class="line">        &#125;</span><br><span class="line">        printf(&quot;\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    v = 0;</span><br><span class="line">    w = 3;</span><br><span class="line">    //求 0 到 3的最小路径</span><br><span class="line">    printf(&quot;\n%d -&gt; %d 的最小路径为：%d\n&quot;, v, w, D[v][w]);</span><br><span class="line">    k = P[v][w];</span><br><span class="line">    printf(&quot;path: %d&quot;, v);//打印起点</span><br><span class="line">    while(k != w)&#123;</span><br><span class="line">        printf(&quot;-&gt; %d&quot;, k);//打印中间点</span><br><span class="line">        k = P[k][w]; </span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;-&gt; %d\n&quot;, w);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    int v, w;</span><br><span class="line">    Graph G;</span><br><span class="line">    printf(&quot;请输入顶点数:\n&quot;);</span><br><span class="line">    scanf(&quot;%d&quot;, &amp;G.vexnum);</span><br><span class="line">    printf(&quot;请输入初始矩阵值：\n&quot;);</span><br><span class="line">    for(v = 0; v &lt; G.vexnum; v++)&#123;</span><br><span class="line">        for(w = 0; w &lt; G.vexnum; w++)&#123;</span><br><span class="line">            scanf(&quot;%d&quot;, &amp;G.matirx[v][w]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;\n输入的矩阵值：\n&quot;);</span><br><span class="line">    for(v = 0; v &lt; G.vexnum; v++)&#123;</span><br><span class="line">        for(w = 0; w &lt; G.vexnum; w++)&#123;</span><br><span class="line">            printf(&quot;%d &quot;, G.matirx[v][w]);</span><br><span class="line">        &#125;</span><br><span class="line">        printf(&quot;\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    short_path_floyd(G, pathmatirx, shortPath);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/20/%E9%80%9A%E9%81%93%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8E%E7%A9%BA%E9%97%B4%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1168,6 +1055,105 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/03/14/%E8%AF%A6%E8%A7%A3%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%88%E4%B8%80%EF%BC%89/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/02/%E7%AE%80%E5%8D%95%E7%9A%84Java%E8%AF%AD%E6%B3%95-%E7%B2%BE%E7%AE%80%E7%89%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon.jpg">
+      <meta itemprop="name" content="KItide">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KItide">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | KItide">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/12/02/%E7%AE%80%E5%8D%95%E7%9A%84Java%E8%AF%AD%E6%B3%95-%E7%B2%BE%E7%AE%80%E7%89%88/" class="post-title-link" itemprop="url">简单的Java语法--精简版</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-12-02 12:00:00" itemprop="dateCreated datePublished" datetime="2022-12-02T12:00:00+08:00">2022-12-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-12-01 12:00:00" itemprop="dateModified" datetime="2022-12-01T12:00:00+08:00">2022-12-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="简单的Java语法"><a href="#简单的Java语法" class="headerlink" title="简单的Java语法"></a>简单的Java语法</h2><h4 id="从简单的java程序入手"><a href="#从简单的java程序入手" class="headerlink" title="从简单的java程序入手"></a>从简单的java程序入手</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloWorld</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span></span><br><span class="line">	&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;Hello,World&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="先说注意事项"><a href="#先说注意事项" class="headerlink" title="先说注意事项:"></a>先说注意事项:</h6><p>*<strong>java区分大小写</strong></p>
+<p>*<strong>java的类（class）名必须和文件名保持一致</strong></p>
+<p>*<strong>java中使用 <code>.</code> 来调用某个对象的方法</strong> </p>
+<p>*<strong>java中使用 <code>;</code> 作为每个语句的结束符</strong></p>
+<h6 id="对上面的代码一行行分析："><a href="#对上面的代码一行行分析：" class="headerlink" title="对上面的代码一行行分析："></a>对上面的代码一行行分析：</h6><h6 id="1-public-class-HelloWorld"><a href="#1-public-class-HelloWorld" class="headerlink" title="1.public class HelloWorld"></a>1.<code>public class HelloWorld</code></h6><p><code>public</code> : java修饰符的一种,这里对类<code>HelloWorld</code>进行修饰，顾名思义，被public修饰的类是“公共的，谁都可以访问的”，现在不理解不要紧，只需要知道目前的新手期用它就对了（修饰符知识点涉及涉及访问权限，之后会详细讲解）</p>
+<p><code>class</code> : 类的定义标识，定义某个类必须要加上它（理解为固定格式就行）</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/12/02/%E7%AE%80%E5%8D%95%E7%9A%84Java%E8%AF%AD%E6%B3%95-%E7%B2%BE%E7%AE%80%E7%89%88/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
