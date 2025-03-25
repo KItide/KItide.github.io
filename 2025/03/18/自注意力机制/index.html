@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":"famathjaxlse","version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="自注意力机制（self-Attention）​		自注意力机制旨在处理序列数据时，打破仅依赖相邻元素的局限，使每个元素都能与序列中的任意元素建立联系。它聚焦于自适应捕捉长程依赖关系，通过量化元素间的相对重要性来实现这一目标。  ​		实际操作中，针对序列里的每一个元素，自注意力机制会先计算它与其余元素的相似度，接着将这些相似度转化为归一化的注意力权重。最后，通过将各元素与对应的注意力权重进行加权求">
+<meta property="og:type" content="article">
+<meta property="og:title" content="注意力机制">
+<meta property="og:url" content="http://example.com/2025/03/18/%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/index.html">
+<meta property="og:site_name" content="KItide">
+<meta property="og:description" content="自注意力机制（self-Attention）​		自注意力机制旨在处理序列数据时，打破仅依赖相邻元素的局限，使每个元素都能与序列中的任意元素建立联系。它聚焦于自适应捕捉长程依赖关系，通过量化元素间的相对重要性来实现这一目标。  ​		实际操作中，针对序列里的每一个元素，自注意力机制会先计算它与其余元素的相似度，接着将这些相似度转化为归一化的注意力权重。最后，通过将各元素与对应的注意力权重进行加权求">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/KItide/image_bed@main/img/20250319191822.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/KItide/image_bed@main/img/20250319194720.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/KItide/image_bed@main/img/20250319212348.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/KItide/image_bed@main/img/20250319212535.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/KItide/image_bed@main/img/20250319213550.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/KItide/image_bed@main/img/20250319213606.png">
+<meta property="article:published_time" content="2025-03-18T04:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-18T04:00:00.000Z">
+<meta property="article:author" content="KItide">
+<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="深度学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/KItide/image_bed@main/img/20250319191822.png">
+
+
+<link rel="canonical" href="http://example.com/2025/03/18/%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/03/18/%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/","path":"2025/03/18/自注意力机制/","title":"注意力机制"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>注意力机制 | KItide</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">KItide</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%EF%BC%88self-Attention%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">自注意力机制（self-Attention）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Embedding%E6%93%8D%E4%BD%9C"><span class="nav-number">1.1.</span> <span class="nav-text">1 Embedding操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%BF%9B%E8%A1%8CEmbedding%E5%91%A2%EF%BC%9F"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1为什么要进行Embedding呢？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Q%E3%80%81K%E6%93%8D%E4%BD%9C"><span class="nav-number">1.2.</span> <span class="nav-text">2 Q、K操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-V%E6%93%8D%E4%BD%9C"><span class="nav-number">1.3.</span> <span class="nav-text">3 V操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E4%BB%A3%E7%A0%81"><span class="nav-number">1.4.</span> <span class="nav-text">4 代码</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="KItide"
+      src="/images/icon.jpg">
+  <p class="site-author-name" itemprop="name">KItide</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/KItide" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;KItide" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://example.com/" title="https:&#x2F;&#x2F;example.com">Title</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/18/%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon.jpg">
+      <meta itemprop="name" content="KItide">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KItide">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="注意力机制 | KItide">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          注意力机制
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-03-18 12:00:00" itemprop="dateCreated datePublished" datetime="2025-03-18T12:00:00+08:00">2025-03-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-18 12:00:00" itemprop="dateModified" datetime="2023-03-18T12:00:00+08:00">2023-03-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="自注意力机制（self-Attention）"><a href="#自注意力机制（self-Attention）" class="headerlink" title="自注意力机制（self-Attention）"></a>自注意力机制（self-Attention）</h2><p>​		自注意力机制旨在处理序列数据时，打破<strong>仅依赖相邻元素的局限</strong>，使每个元素都能与序列中的<strong>任意元素</strong>建立联系。它聚焦于自适应捕捉长程依赖关系，通过量化元素间的相对重要性来实现这一目标。 </p>
+<p>​		实际操作中，针对序列里的每一个元素，自注意力机制会先计算它与其余元素的相似度，接着将这些相似度转化为归一化的注意力权重。最后，通过将各元素与对应的注意力权重进行加权求和，生成自注意力机制的输出结果。 其基本架构图如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/KItide/image_bed@main/img/20250319191822.png" alt="image-220250319191822"></p>
+<h3 id="1-Embedding操作"><a href="#1-Embedding操作" class="headerlink" title="1 Embedding操作"></a>1 Embedding操作</h3><h4 id="1-1为什么要进行Embedding呢？"><a href="#1-1为什么要进行Embedding呢？" class="headerlink" title="1.1为什么要进行Embedding呢？"></a>1.1<strong>为什么要进行Embedding呢？</strong></h4><p>​	1. <strong>让计算机理解语义</strong>   - 计算机不懂文字，Embedding能把像单词这样的东西变成向量。这些向量可以放在一个空间里，语义相近的单词对应的向量距离就近，这样计算机就能理解语义了。比如“猫”和“狗”的向量距离近，因为它们都是动物。</p>
+<ol start="2">
+<li><p><strong>减少计算量</strong>   - 以前表示单词可能用很高维很稀疏的编码，Embedding可以把它变成低维的、密密麻麻的向量。就像把一个很占地方的大东西变成小而紧凑的，计算起来就方便多了。 </p>
+</li>
+<li><p><strong>方便模型干活和举一反三</strong>   - 低维向量更容易被模型处理。就像小零件模型更容易摆弄一样。而且这些向量在大量文字上学到了语义知识，遇到新的文字也能更好地发挥作用。</p>
+</li>
+<li><p><strong>结合上下文理解单词</strong>   - 一个单词在不同句子里意思可能不同，Embedding可以根据句子上下文来调整单词的向量表示，让它的意思更准确。比如“bank”在讲河的时候和讲钱的时候意思就不一样，Embedding能让它的向量体现出这种差别。</p>
+</li>
+</ol>
+<pre><code> #### 1.2 world Embedding
+
+ ![image-20250319193444](https://cdn.jsdelivr.net/gh/KItide/image_bed@main/img/20250319193444.png)
+</code></pre>
+<p>​			</p>
+<ul>
+<li><strong>目的</strong>：词嵌入是将单词映射为数值向量，以捕捉单词间的语义和句法关系，为自然语言处理任务提供有效的特征表示。</li>
+<li>**方法与技术：**词嵌入通过预测单词上下文（如Word2Vec）或全局词频统计（如GloVe）来学习，也可使用深度神经网络捕捉更复杂的语言特征。</li>
+</ul>
+<h3 id="2-Q、K操作"><a href="#2-Q、K操作" class="headerlink" title="2 Q、K操作"></a>2 Q、K操作</h3><p>​	Embedding操作后， a1,a2,a3,a4 将会作为注意力机制的 input data。</p>
+<p><strong>第一步</strong>，每个 a1,a2,a3,a4 都会分别乘以三个矩阵，分别是 <strong>Q,K,V</strong> ；需要注意的是，矩阵<strong>Q,K,V</strong>在整个过程中是<strong>共享</strong>的(这也是自注意力自的由来)；公式如下：</p>
+<p>​	<br>$$<br>\begin{align}<br>q^{i}&amp;&#x3D;W^{q}a^{i}\<br>k^{i}&amp;&#x3D;W^{k}a^{i}\<br>v^{i}&amp;&#x3D;W^{v}a^{i}<br>\end{align}<br>$$</p>
+<p><img src="https://cdn.jsdelivr.net/gh/KItide/image_bed@main/img/20250319194720.png" alt="image-20250319194720"></p>
+<p>其中， Q (Query) 的含义一般的解释是用来和其他单词进行匹配，更准确地说是用来计算当前单词或字与其他的单词或字之间的关联或者关系； K(Key) 的含义则是被用来和 Q进行匹配，也可理解为单词或者字的关键信息。</p>
+<p>如下图所示，若需要计算 a1 和 a2,a3,a4 之间的关系（或关联），则需要用 q1 和 k2,k3,k4 进行匹配计算，计算公式如下：<br>$$<br>α_{ij} &#x3D; \frac{q^i \cdot k^j}{\sqrt{d_k}}<br>$$<br>(<strong>当然这个公式并不是固定的，可以用各种方法来计算，大家也能在这方面做创新</strong>)</p>
+<p>其中， d 表示 Q 和 K 的矩阵维度（在Transformer中一般为512），在 Self-Attention 中， Q和 K的维度是一样的。这里除以 d 的原因是防q 和 k的点乘结果较大，在Transformer中除上d是为使其的方差更加接近于1。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/KItide/image_bed@main/img/20250319212348.png" alt="image-20250319212348"></p>
+<p>经过 q 和 k 的点乘操作后，会得到 α1,1,α1,2,α1,3,α1,4 ；然后，就是对其进行 softmax 操作，得到 α1,1 ,α1,2 ,α1,3  ,α1,4 。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/KItide/image_bed@main/img/20250319212535.png" alt="image-20250319212535"></p>
+<h3 id="3-V操作"><a href="#3-V操作" class="headerlink" title="3 V操作"></a>3 V操作</h3><p>​		$v$ 主要用于表示当前单词或字的重要信息，也能理解成单词的关键特征。比如，$v^1$ 代表 “你” 这个字的重要信息。在涉及 $v$ 的运算里，会把对 $q$、$k$ 操作后得到的 $\tilde{\alpha}<em>{1,1}$，$\tilde{\alpha}</em>{1,2}$，$\tilde{\alpha}<em>{1,3}$，$\tilde{\alpha}</em>{1,4}$ 分别与 $v^1$，$v^2$，$v^3$，$v^4$ 相乘。其计算公式为 $b^1 &#x3D; \sum_{i} \tilde{\alpha}_{1,i}v^i$  。 </p>
+<p><img src="https://cdn.jsdelivr.net/gh/KItide/image_bed@main/img/20250319213550.png" alt="image-20250319213550"></p>
+<p>对应的$b^1 &#x3D; \sum_{i} \tilde{\alpha}_{1,i}v^i$</p>
+<p><img src="https://cdn.jsdelivr.net/gh/KItide/image_bed@main/img/20250319213606.png" alt="image-20250319213606"></p>
+<p>由此可见，自注意力机制通过计算序列中不同位置之间的相关性（ q,k 操作），为每个位置分配一个权重，然后对序列进行加权求和（ v 操作）。</p>
+<h3 id="4-代码"><a href="#4-代码" class="headerlink" title="4 代码"></a>4 代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> DataLoader</span><br><span class="line"><span class="keyword">from</span> torchvision <span class="keyword">import</span> datasets, transforms</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义自注意力模块</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SelfAttention</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, embed_dim</span>):</span><br><span class="line">        <span class="built_in">super</span>(SelfAttention, <span class="variable language_">self</span>).__init__()</span><br><span class="line">        <span class="variable language_">self</span>.query = nn.Linear(embed_dim, embed_dim)</span><br><span class="line">        <span class="variable language_">self</span>.key = nn.Linear(embed_dim, embed_dim)</span><br><span class="line">        <span class="variable language_">self</span>.value = nn.Linear(embed_dim, embed_dim)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        q = <span class="variable language_">self</span>.query(x)</span><br><span class="line">        k = <span class="variable language_">self</span>.key(x)</span><br><span class="line">        v = <span class="variable language_">self</span>.value(x)</span><br><span class="line">        attn_weights = torch.matmul(q, k.transpose(<span class="number">1</span>, <span class="number">2</span>))</span><br><span class="line">        attn_weights = nn.functional.softmax(attn_weights, dim=-<span class="number">1</span>)</span><br><span class="line">        attended_values = torch.matmul(attn_weights, v)</span><br><span class="line">        <span class="keyword">return</span> attended_values</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义自注意力分类器模型</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SelfAttentionClassifier</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, embed_dim, hidden_dim, num_classes</span>):</span><br><span class="line">        <span class="built_in">super</span>(SelfAttentionClassifier, <span class="variable language_">self</span>).__init__()</span><br><span class="line">        <span class="variable language_">self</span>.attention = SelfAttention(embed_dim)</span><br><span class="line">        <span class="variable language_">self</span>.fc1 = nn.Linear(embed_dim, hidden_dim)</span><br><span class="line">        <span class="variable language_">self</span>.fc2 = nn.Linear(hidden_dim, num_classes)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        attended_values = <span class="variable language_">self</span>.attention(x)</span><br><span class="line">        x = attended_values.mean(dim=<span class="number">1</span>)  <span class="comment"># 对每个位置的向量求平均</span></span><br><span class="line">        x = <span class="variable language_">self</span>.fc1(x)</span><br><span class="line">        x = torch.relu(x)</span><br><span class="line">        x = <span class="variable language_">self</span>.fc2(x)</span><br><span class="line">        <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># 机器学习</a>
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 深度学习</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/03/17/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/" rel="prev" title="注意力机制">
+                  <i class="fa fa-angle-left"></i> 注意力机制
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/03/18/%E5%A4%9A%E5%A4%B4%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/" rel="next" title="多头注意力机制">
+                  多头注意力机制 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">KItide</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
