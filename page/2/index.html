@@ -121,7 +121,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -166,6 +166,102 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/14/%E7%AE%80%E5%8D%95%E7%9A%84Java%E8%AF%AD%E6%B3%95-%E8%A1%A5%E4%B8%81%E7%89%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon.jpg">
+      <meta itemprop="name" content="KItide">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KItide">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | KItide">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/11/14/%E7%AE%80%E5%8D%95%E7%9A%84Java%E8%AF%AD%E6%B3%95-%E8%A1%A5%E4%B8%81%E7%89%88/" class="post-title-link" itemprop="url">简单的Java语法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-11-14 12:00:00" itemprop="dateCreated datePublished" datetime="2022-11-14T12:00:00+08:00">2022-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-11-15 14:30:00" itemprop="dateModified" datetime="2022-11-15T14:30:00+08:00">2022-11-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="简单的Java语法-后续"><a href="#简单的Java语法-后续" class="headerlink" title="简单的Java语法-后续"></a>简单的Java语法-后续</h1><h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><p>简单地讲，就是Java语言（JDK）能识别的运算符号（**不只是针对“数”**而言）</p>
+<h6 id="基本的五个数字运算符：-分别对应加、减、乘、除、取余"><a href="#基本的五个数字运算符：-分别对应加、减、乘、除、取余" class="headerlink" title="基本的五个数字运算符：+ - * / % 分别对应加、减、乘、除、取余"></a>基本的五个数字运算符：<code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>%</code> 分别对应加、减、乘、除、取余</h6><p>结合前面的数据类型讲点特别的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">int</span> num_1, num_2;</span><br><span class="line">        <span class="type">double</span> num_3, num_4;</span><br><span class="line">        num_1 = <span class="number">12</span> / <span class="number">5</span>;</span><br><span class="line">        num_2 = <span class="number">14</span> / <span class="number">5</span>;</span><br><span class="line">        num_3 = <span class="number">12</span> / <span class="number">5</span>;</span><br><span class="line">        num_4 = <span class="number">12.0</span> / <span class="number">5</span>;</span><br><span class="line">        System.out.println(<span class="string">&quot;num_1 is &quot;</span> + num_1);</span><br><span class="line">        System.out.println(<span class="string">&quot;num_2 is &quot;</span> + num_2);</span><br><span class="line">        System.out.println(<span class="string">&quot;num_3 is &quot;</span> + num_3);</span><br><span class="line">        System.out.println(<span class="string">&quot;num_4 is &quot;</span> + num_4);</span><br><span class="line">        num_1 = <span class="number">1</span> / <span class="number">3</span>;</span><br><span class="line">        num_2 = <span class="number">4</span> / <span class="number">3</span>;</span><br><span class="line">        num_3 = <span class="number">3</span>;</span><br><span class="line">        System.out.println(<span class="string">&quot;现在 num_1 的值为  &quot;</span> + num_1);</span><br><span class="line">        System.out.println(<span class="string">&quot;现在 num_2 的值为  &quot;</span> + num_2);</span><br><span class="line">        System.out.println(<span class="string">&quot;现在 num_3 的值为  &quot;</span> + num_3);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//运行结果如下:</span></span><br><span class="line">num_1 is <span class="number">2</span></span><br><span class="line">num_2 is <span class="number">2</span></span><br><span class="line">num_3 is <span class="number">2.0</span></span><br><span class="line">num_4 is <span class="number">2.4</span></span><br><span class="line">现在 num_1 的值为  <span class="number">0</span></span><br><span class="line">现在 num_2 的值为  <span class="number">1</span></span><br><span class="line">现在 num_3 的值为  <span class="number">3.0</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看出，如果是<strong>整数与整数之间的除法</strong>，结果是会自动取整数部分，<strong>舍去小数</strong>部分</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/11/14/%E7%AE%80%E5%8D%95%E7%9A%84Java%E8%AF%AD%E6%B3%95-%E8%A1%A5%E4%B8%81%E7%89%88/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -818,7 +914,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
